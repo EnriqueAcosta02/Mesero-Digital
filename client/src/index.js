@@ -1,12 +1,7 @@
-// index.js
 import React from 'react';
-import ReactDOM from 'react-dom/client';
-import App from './App'; // Ruta a tu componente App
-import './index.css'; // Si tienes estilos
+import ReactDOM from 'react-dom/client';  // Importa desde 'react-dom/client' en lugar de 'react-dom'
+import App from './App';
+import './index.css';
 
-const root = ReactDOM.createRoot(document.getElementById('root'));
-root.render(
-    <React.StrictMode>
-        <App />
-    </React.StrictMode>
-);
+const root = ReactDOM.createRoot(document.getElementById('root'));  // Crea un root
+root.render(<App />);  // Usa el método render del root
