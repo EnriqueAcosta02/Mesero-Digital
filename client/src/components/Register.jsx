@@ -18,7 +18,6 @@ const Register = () => {
         }
 
         try {
-            // Registrar el usuario
             const response = await fetch('http://localhost:9999/api/register', {
                 method: 'POST',
                 headers: {
@@ -32,7 +31,6 @@ const Register = () => {
             if (response.ok) {
                 setMessage('Registro exitoso');
 
-                // Iniciar sesión automáticamente después de registrarse
                 const loginResponse = await fetch('http://localhost:9999/api/login', {
                     method: 'POST',
                     headers: {
@@ -44,9 +42,7 @@ const Register = () => {
                 const loginData = await loginResponse.json();
 
                 if (loginResponse.ok) {
-                    // Guardar el token en localStorage
                     localStorage.setItem('token', loginData.token);
-                    // Redirigir a la página de productos
                     navigate('/productos');
                 } else {
                     setMessage(loginData.message || 'Error al iniciar sesión después del registro');
@@ -58,6 +54,10 @@ const Register = () => {
             console.error('Error en la solicitud de registro:', error);
             setMessage('Error en la solicitud de registro');
         }
+    };
+
+    const goToHome = () => {
+        navigate('/');  // Redirigir a la página de inicio
     };
 
     return (
@@ -107,8 +107,23 @@ const Register = () => {
                 <button type="submit">Registrar</button>
             </form>
             <p>{message}</p>
+
+            {/* Botón de "Volver a Inicio" */}
+            <button onClick={goToHome} style={styles.backButton}>Volver a Inicio</button>
         </div>
     );
+};
+
+const styles = {
+    backButton: {
+        backgroundColor: '#4CAF50',  // Verde como en los otros botones
+        color: 'white',
+        padding: '10px 20px',
+        border: 'none',
+        borderRadius: '4px',
+        cursor: 'pointer',
+        marginTop: '20px',  // Margen para separar el botón
+    }
 };
 
 export default Register;

@@ -2,7 +2,7 @@ import React, { useState } from 'react';
 import { useNavigate } from 'react-router-dom';
 
 const Login = () => {
-    const [email, setEmail] = useState('');  // Cambié 'username' a 'email' para coincidir con el backend
+    const [email, setEmail] = useState('');
     const [password, setPassword] = useState('');
     const navigate = useNavigate();
 
@@ -11,13 +11,13 @@ const Login = () => {
         
         // Hacer la solicitud de inicio de sesión al backend
         try {
-            const response = await fetch('http://localhost:9999/api/login', {  // Asegúrate de que esta sea la ruta correcta
+            const response = await fetch('http://localhost:9999/api/login', {
                 method: 'POST',
                 headers: {
                     'Content-Type': 'application/json',
                 },
                 body: JSON.stringify({
-                    email,   // Enviar el email en lugar del nombre de usuario
+                    email,
                     password,
                 }),
             });
@@ -28,7 +28,7 @@ const Login = () => {
                 // Guardar el token en localStorage
                 localStorage.setItem('token', data.token);
                 console.log('Inicio de sesión exitoso');
-                navigate('/productos');  // Redirigir a la página de productos
+                navigate('/catalogo');  // Redirigir a la página de catálogo
             } else {
                 console.log('Error al iniciar sesión:', data.message);
                 alert('Credenciales inválidas. Intenta nuevamente.');
@@ -41,6 +41,10 @@ const Login = () => {
 
     const goToRegister = () => {
         navigate('/register');  // Redirigir a la ruta de registro
+    };
+
+    const goToHome = () => {
+        navigate('/');  // Redirigir a la página de inicio
     };
 
     return (
@@ -75,8 +79,23 @@ const Login = () => {
                 ¿No tienes cuenta? 
                 <button onClick={goToRegister}>Registrarse</button>
             </p>
+
+            {/* Botón de "Volver a Inicio" */}
+            <button onClick={goToHome} style={styles.backButton}>Volver a Inicio</button>
         </div>
     );
+};
+
+const styles = {
+    backButton: {
+        backgroundColor: '#4CAF50',
+        color: 'white',
+        padding: '10px 20px',
+        border: 'none',
+        borderRadius: '4px',
+        cursor: 'pointer',
+        marginTop: '20px',
+    }
 };
 
 export default Login;
