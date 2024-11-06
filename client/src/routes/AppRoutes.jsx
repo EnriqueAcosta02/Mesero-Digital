@@ -4,7 +4,7 @@ import Home from '../components/Home';
 import Login from '../components/Login';
 import Register from '../components/Register';
 import Productos from '../components/Productos';
-import NoAuth from '../components/NoAuth';
+import NoAuth from '../components/noauth';
 import Catalogo from '../components/Catalogo'; 
 
 const AppRoutes = () => {

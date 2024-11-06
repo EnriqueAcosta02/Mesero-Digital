@@ -2,23 +2,21 @@ import React, { useEffect, useState } from 'react';
 import { useParams, useNavigate } from 'react-router-dom';
 
 const Productos = () => {
-    const { categoria } = useParams(); // Obtener la categoría de la URL
+    const { categoria } = useParams(); 
     const [productos, setProductos] = useState([]);
     const navigate = useNavigate();
     const [user, setUser] = useState(null);
 
     useEffect(() => {
-        // Obtener el token almacenado en localStorage
         const token = localStorage.getItem('token');
         if (token) {
             const decodedToken = JSON.parse(atob(token.split('.')[1]));
             setUser({ username: decodedToken.username });
         }
 
-        // Función para obtener los productos según la categoría
         const fetchProductos = async () => {
             try {
-                const response = await fetch(`http://localhost:9999/productos/${categoria}`); // Solicitar productos de la categoría seleccionada
+                const response = await fetch(`http://localhost:9999/productos/${categoria}`);
                 const data = await response.json();
                 setProductos(data);
             } catch (error) {
@@ -35,7 +33,7 @@ const Productos = () => {
     };
 
     const goBackToCatalogo = () => {
-        navigate('/catalogo'); // Volver al catálogo
+        navigate('/catalogo');
     };
 
     return (
@@ -55,38 +53,55 @@ const Productos = () => {
                 )}
             </div>
 
-            <h1>{categoria.charAt(0).toUpperCase() + categoria.slice(1)}</h1> {/* Título dinámico */}
+            <h1>{categoria.charAt(0).toUpperCase() + categoria.slice(1)}</h1> 
             
-            <section>
-                <h2>Productos de {categoria.charAt(0).toUpperCase() + categoria.slice(1)}</h2>
-                <ul>
-                    {productos.map((producto) => (
-                        <li key={producto._id}>
-                            <h3>{producto.nombre} - ${producto.precio}</h3>
-                            {producto.ingredientes && (
-                                <>
-                                    <h4>Ingredientes:</h4>
-                                    <ul>
-                                        {producto.ingredientes.map((ingrediente) => (
-                                            <li key={ingrediente._id}>
-                                                {ingrediente.nombre} - {ingrediente.cantidad}
-                                            </li>
-                                        ))}
-                                    </ul>
-                                </>
-                            )}
-                        </li>
-                    ))}
-                </ul>
+            <section style={styles.catalogContainer}>
+                {productos.map((producto) => (
+                    <div key={producto._id} style={styles.productCard}>
+                        <img src={producto.imagenUrl} alt={producto.nombre} style={styles.productImage} />
+                        <h3>{producto.nombre}</h3>
+                        <p>Precio: ${producto.precio}</p>
+                        {producto.ingredientes && (
+                            <>
+                                <h4>Ingredientes:</h4>
+                                <ul>
+                                    {producto.ingredientes.map((ingrediente) => (
+                                        <li key={ingrediente._id}>
+                                            {ingrediente.nombre} - {ingrediente.cantidad}
+                                        </li>
+                                    ))}
+                                </ul>
+                            </>
+                        )}
+                    </div>
+                ))}
             </section>
 
-            {/* Botón para volver al catálogo */}
             <button onClick={goBackToCatalogo} style={styles.backButton}>Volver al Catálogo</button>
         </div>
     );
 };
 
 const styles = {
+    catalogContainer: {
+        display: 'grid',
+        gridTemplateColumns: 'repeat(auto-fill, minmax(200px, 1fr))',
+        gap: '20px',
+        padding: '20px',
+    },
+    productCard: {
+        border: '1px solid #ccc',
+        borderRadius: '8px',
+        padding: '15px',
+        textAlign: 'center',
+        boxShadow: '0 4px 8px rgba(0, 0, 0, 0.1)',
+    },
+    productImage: {
+        width: '100%',
+        height: '150px',
+        objectFit: 'cover',
+        borderRadius: '8px 8px 0 0',
+    },
     backButton: {
         backgroundColor: '#4CAF50',
         color: 'white',
