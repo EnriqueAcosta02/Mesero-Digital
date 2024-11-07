@@ -11,6 +11,9 @@ const Catalogo = () => {
     const handleBackToHome = () => {
         navigate('/'); // Navegar a la página de inicio
     };
+    const goToAddProductPage = () => {
+        navigate('/add-product'); // Redirige a la página de agregar producto
+    };
 
     return (
         <div style={styles.catalogoContainer}>
@@ -33,6 +36,9 @@ const Catalogo = () => {
                 </div>
                 <div style={styles.categoriaCard} onClick={() => handleCategoryClick('bebidas')}>
                     <h3>Bebidas</h3>
+                </div>
+                <div>
+                    <button onClick={goToAddProductPage}>Agregar Producto</button>
                 </div>
             </div>
         </div>

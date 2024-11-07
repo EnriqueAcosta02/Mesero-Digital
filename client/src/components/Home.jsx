@@ -12,9 +12,7 @@ const Home = () => {
         navigate('/register'); // Redirige a la página de registro
     };
 
-    const goToAddProductPage = () => {
-        navigate('/add-product'); // Redirige a la página de agregar producto
-    };
+    
 
     return (
         <div>
@@ -23,7 +21,7 @@ const Home = () => {
             <button onClick={handleLogin}>Iniciar Sesión</button>
             <button onClick={handleRegister}>Registrarse</button>
             <br /><br />
-            <button onClick={goToAddProductPage}>Agregar Producto</button>
+            
         </div>
     );
 };
