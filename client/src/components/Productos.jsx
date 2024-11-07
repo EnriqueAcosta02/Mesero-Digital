@@ -53,6 +53,10 @@ const Productos = () => {
                 )}
             </div>
 
+
+            <button onClick={() => navigate('/agregar-producto')} style={styles.addButton}>Agregar Nuevo Producto</button>
+
+
             <h1>{categoria.charAt(0).toUpperCase() + categoria.slice(1)}</h1> 
             
             <section style={styles.catalogContainer}>
