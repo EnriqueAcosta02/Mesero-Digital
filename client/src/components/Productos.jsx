@@ -1,9 +1,12 @@
 import React, { useEffect, useState } from 'react';
 import { useParams, useNavigate } from 'react-router-dom';
+import '../App.css'; // Asegúrate de que la ruta sea correcta
+
 
 const Productos = () => {
     const { categoria } = useParams(); 
-    const [productos, setProductos] = useState([]); // Inicialización como array vacío
+    const [productos, setProductos] = useState([]);
+    const [cart, setCart] = useState(() => JSON.parse(localStorage.getItem('cart')) || []);
     const navigate = useNavigate();
     const [user, setUser] = useState(null);
 
@@ -21,13 +24,7 @@ const Productos = () => {
                     throw new Error(`Error en la solicitud: ${response.statusText}`);
                 }
                 const data = await response.json();
-
-                // Verificar que la respuesta sea un array
-                if (Array.isArray(data)) {
-                    setProductos(data);
-                } else {
-                    console.error("La respuesta no es un array:", data);
-                }
+                setProductos(Array.isArray(data) ? data : []);
             } catch (error) {
                 console.error(`Error al obtener productos de la categoría ${categoria}:`, error);
             }
@@ -35,6 +32,14 @@ const Productos = () => {
 
         fetchProductos();
     }, [categoria]);
+
+    useEffect(() => {
+        localStorage.setItem('cart', JSON.stringify(cart));
+    }, [cart]);
+
+    const handleAddToCart = (producto) => {
+        setCart([...cart, producto]);
+    };
 
     const handleLogout = () => {
         localStorage.removeItem('token');
@@ -45,40 +50,47 @@ const Productos = () => {
         navigate('/catalogo');
     };
 
+    const goToCart = () => {
+        navigate('/carrito');
+    };
+
     return (
         <div>
-            <div style={{ padding: '10px', borderBottom: '1px solid #ccc' }}>
+            <div className="header">
                 {user ? (
-                    <div>
+                    <div className="user-info">
                         <span>Bienvenido, {user.username}</span>
-                        <button onClick={handleLogout} style={{ marginLeft: '20px' }}>
+                        <button onClick={handleLogout} className="logout-btn">
                             Cerrar Sesión
                         </button>
                     </div>
                 ) : (
-                    <div>
-                        <span>No estás autenticado</span>
-                    </div>
+                    <span>No estás autenticado</span>
                 )}
+                <div className="cart-info">
+                    🛒 Carrito: {cart.length} artículos
+                    <button onClick={goToCart} className="view-cart-btn">
+                        Ver carrito
+                    </button>
+                </div>
             </div>
 
-            <h1>{categoria.charAt(0).toUpperCase() + categoria.slice(1)}</h1> 
+            <h1>{categoria.charAt(0).toUpperCase() + categoria.slice(1)}</h1>
 
-            <section style={styles.catalogContainer}>
+            <section className="catalog-container">
                 {productos.length > 0 ? (
                     productos.map((producto) => (
-                        <div key={producto._id} style={styles.productCard}>
-                       <img
-    src={producto.imagenUrl && !producto.imagenUrl.startsWith('http') 
-        ? `http://localhost:9999${producto.imagenUrl}` 
-        : producto.imagenUrl || '/path/to/default-image.jpg'}
-    alt={producto.nombre}
-    style={styles.productImage}
-/>
-
+                        <div key={producto._id} className="product-card">
+                            <img
+                                src={producto.imagenUrl && !producto.imagenUrl.startsWith('http') 
+                                    ? `http://localhost:9999${producto.imagenUrl}` 
+                                    : producto.imagenUrl || '/path/to/default-image.jpg'}
+                                alt={producto.nombre}
+                                className="product-image"
+                            />
 
                             <h3>{producto.nombre}</h3>
-                            <p>Precio: ${producto.precio}</p>
+                            <p>Precio: Gs{producto.precio}</p>
                             {producto.ingredientes && (
                                 <>
                                     <h4>Ingredientes:</h4>
@@ -91,6 +103,9 @@ const Productos = () => {
                                     </ul>
                                 </>
                             )}
+                            <button onClick={() => handleAddToCart(producto)} className="cart-button">
+                                Agregar al carrito 🛒
+                            </button>
                         </div>
                     ))
                 ) : (
@@ -98,40 +113,9 @@ const Productos = () => {
                 )}
             </section>
 
-            <button onClick={goBackToCatalogo} style={styles.backButton}>Volver al Catálogo</button>
+            <button onClick={goBackToCatalogo} className="back-button">Volver al Catálogo</button>
         </div>
     );
-};
-
-const styles = {
-    catalogContainer: {
-        display: 'grid',
-        gridTemplateColumns: 'repeat(auto-fill, minmax(200px, 1fr))',
-        gap: '20px',
-        padding: '20px',
-    },
-    productCard: {
-        border: '1px solid #ccc',
-        borderRadius: '8px',
-        padding: '15px',
-        textAlign: 'center',
-        boxShadow: '0 4px 8px rgba(0, 0, 0, 0.1)',
-    },
-    productImage: {
-        width: '100%',
-        height: '150px',
-        objectFit: 'cover',
-        borderRadius: '8px 8px 0 0',
-    },
-    backButton: {
-        backgroundColor: '#4CAF50',
-        color: 'white',
-        padding: '10px 20px',
-        border: 'none',
-        borderRadius: '4px',
-        cursor: 'pointer',
-        marginTop: '20px',
-    }
 };
 
 export default Productos;

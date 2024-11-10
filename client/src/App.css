@@ -1,3 +1,4 @@
+/* Estilos generales de la aplicación */
 .App {
   text-align: center;
 }
@@ -35,4 +36,136 @@
   to {
     transform: rotate(360deg);
   }
+}
+
+/* Estilos para el contenedor de los productos */
+.catalog-container {
+  display: grid;
+  grid-template-columns: repeat(auto-fill, minmax(250px, 1fr)); /* Distribuye las tarjetas en filas y columnas */
+  gap: 20px; /* Espaciado entre las tarjetas */
+  padding: 20px;
+  width: 100%;
+  box-sizing: border-box; /* Asegura que el padding no afecte el tamaño del contenedor */
+}
+
+/* Estilo para cada tarjeta de producto */
+.product-card {
+  border: 1px solid #ccc;
+  border-radius: 8px;
+  padding: 15px;
+  text-align: center;
+  box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  background-color: white;
+  transition: transform 0.3s ease, box-shadow 0.3s ease;
+}
+
+/* Efecto al pasar el mouse sobre la tarjeta */
+.product-card:hover {
+  transform: scale(1.05); /* Agranda la tarjeta */
+  box-shadow: 0 6px 12px rgba(0, 0, 0, 0.2); /* Añade sombra al pasar el mouse */
+}
+
+/* Estilo de la imagen del producto */
+.product-image {
+  width: 100%;
+  height: 200px;
+  object-fit: cover;
+  border-radius: 8px 8px 0 0;
+  transition: transform 0.3s ease;
+}
+
+/* Efecto al pasar el mouse sobre la imagen */
+.product-card:hover .product-image {
+  transform: scale(1.05); /* Aumenta el tamaño de la imagen al pasar el mouse */
+}
+
+/* Estilos del botón de agregar al carrito */
+.cart-button {
+  background-color: #007BFF;
+  color: white;
+  padding: 12px;
+  border: none;
+  border-radius: 4px;
+  cursor: pointer;
+  margin-top: 15px;
+  transition: background-color 0.3s ease, transform 0.3s ease, box-shadow 0.3s ease;
+}
+
+/* Animación al pasar el mouse sobre el botón "Agregar al carrito" */
+.cart-button:hover {
+  background-color: #0056b3;
+  transform: scale(1.05); /* Efecto de escala en el hover */
+  box-shadow: 0 4px 8px rgba(0, 0, 0, 0.2); /* Añade sombra al pasar el mouse */
+}
+
+/* Efecto al hacer clic en el botón "Agregar al carrito" */
+.cart-button:active {
+  transform: scale(0.95); /* Reduce el tamaño del botón al hacer clic */
+  background-color: #004085; /* Oscurece el color de fondo al presionar */
+  box-shadow: 0 2px 4px rgba(0, 0, 0, 0.3); /* Sombra más pequeña al presionar */
+}
+
+/* Estilos del botón de volver al catálogo */
+.back-button {
+  background-color: #4CAF50;
+  color: white;
+  padding: 12px 25px;
+  border: none;
+  border-radius: 4px;
+  cursor: pointer;
+  margin-top: 20px;
+  transition: background-color 0.3s ease, transform 0.3s ease, box-shadow 0.3s ease;
+}
+
+/* Animación al pasar el mouse sobre el botón "Volver al Catálogo" */
+.back-button:hover {
+  background-color: #45a049;
+  transform: scale(1.05); /* Efecto de escala en el hover */
+  box-shadow: 0 4px 8px rgba(0, 0, 0, 0.2); /* Añade sombra al pasar el mouse */
+}
+
+/* Estilo para el encabezado */
+.header {
+  padding: 10px;
+  border-bottom: 1px solid #ccc;
+}
+
+/* Estilo para la información del usuario */
+.user-info {
+  display: flex;
+  align-items: center;
+}
+
+/* Estilo para el botón de logout */
+.logout-btn {
+  margin-left: 20px;
+}
+
+/* Estilos para la información del carrito */
+.cart-info {
+  float: right;
+  display: flex;
+  align-items: center;
+}
+
+/* Estilo para el botón de ver carrito */
+.view-cart-btn {
+  margin-left: 10px;
+  background-color: #ff6f61;
+  color: white;
+  padding: 10px 15px;
+  border: none;
+  border-radius: 4px;
+  cursor: pointer;
+  transition: background-color 0.3s ease, transform 0.3s ease, box-shadow 0.3s ease;
+}
+
+/* Animación al pasar el mouse sobre el botón "Ver carrito" */
+.view-cart-btn:hover {
+  background-color: #e65b52;
+  transform: scale(1.05); /* Efecto de escala en el hover */
+  box-shadow: 0 4px 8px rgba(0, 0, 0, 0.2); /* Añade sombra al pasar el mouse */
 }

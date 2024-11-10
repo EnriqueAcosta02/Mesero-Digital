@@ -7,7 +7,8 @@ import Productos from '../components/Productos';
 import NoAuth from '../components/noauth';
 import Catalogo from '../components/Catalogo';
 import AddProductForm from '../components/AddProductForm';
-import EditProduct from '../components/EditProduct'; // Asegúrate de importar el componente EditProduct
+import EditProduct from '../components/EditProduct'; 
+import Carrito from '../components/Carrito';
 
 const AppRoutes = () => {
     const isAuthenticated = localStorage.getItem('token');
@@ -22,6 +23,7 @@ const AppRoutes = () => {
             <Route path="/login" element={<Login />} />
             <Route path="/register" element={<Register />} />
             <Route path="/add-product" element={<AddProductForm />} />
+            <Route path="/carrito" element={<Carrito />} />
 
             {/* Ruta dinámica para los productos según la categoría */}
             <Route path="/productos/:categoria" element={<ProtectedRoute element={<Productos />} />} />
