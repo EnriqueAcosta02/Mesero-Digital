@@ -3,7 +3,7 @@ import { useParams, useNavigate } from 'react-router-dom';
 
 const Productos = () => {
     const { categoria } = useParams(); 
-    const [productos, setProductos] = useState([]);
+    const [productos, setProductos] = useState([]); // Inicialización como array vacío
     const navigate = useNavigate();
     const [user, setUser] = useState(null);
 
@@ -17,8 +17,17 @@ const Productos = () => {
         const fetchProductos = async () => {
             try {
                 const response = await fetch(`http://localhost:9999/productos/${categoria}`);
+                if (!response.ok) {
+                    throw new Error(`Error en la solicitud: ${response.statusText}`);
+                }
                 const data = await response.json();
-                setProductos(data);
+
+                // Verificar que la respuesta sea un array
+                if (Array.isArray(data)) {
+                    setProductos(data);
+                } else {
+                    console.error("La respuesta no es un array:", data);
+                }
             } catch (error) {
                 console.error(`Error al obtener productos de la categoría ${categoria}:`, error);
             }
@@ -53,32 +62,40 @@ const Productos = () => {
                 )}
             </div>
 
-
-            <button onClick={() => navigate('/agregar-producto')} style={styles.addButton}>Agregar Nuevo Producto</button>
-
-
             <h1>{categoria.charAt(0).toUpperCase() + categoria.slice(1)}</h1> 
-            
+
             <section style={styles.catalogContainer}>
-                {productos.map((producto) => (
-                    <div key={producto._id} style={styles.productCard}>
-                        <img src={producto.imagenUrl} alt={producto.nombre} style={styles.productImage} />
-                        <h3>{producto.nombre}</h3>
-                        <p>Precio: ${producto.precio}</p>
-                        {producto.ingredientes && (
-                            <>
-                                <h4>Ingredientes:</h4>
-                                <ul>
-                                    {producto.ingredientes.map((ingrediente) => (
-                                        <li key={ingrediente._id}>
-                                            {ingrediente.nombre} - {ingrediente.cantidad}
-                                        </li>
-                                    ))}
-                                </ul>
-                            </>
-                        )}
-                    </div>
-                ))}
+                {productos.length > 0 ? (
+                    productos.map((producto) => (
+                        <div key={producto._id} style={styles.productCard}>
+                       <img
+    src={producto.imagenUrl && !producto.imagenUrl.startsWith('http') 
+        ? `http://localhost:9999${producto.imagenUrl}` 
+        : producto.imagenUrl || '/path/to/default-image.jpg'}
+    alt={producto.nombre}
+    style={styles.productImage}
+/>
+
+
+                            <h3>{producto.nombre}</h3>
+                            <p>Precio: ${producto.precio}</p>
+                            {producto.ingredientes && (
+                                <>
+                                    <h4>Ingredientes:</h4>
+                                    <ul>
+                                        {producto.ingredientes.map((ingrediente) => (
+                                            <li key={ingrediente._id}>
+                                                {ingrediente.nombre} - {ingrediente.cantidad}
+                                            </li>
+                                        ))}
+                                    </ul>
+                                </>
+                            )}
+                        </div>
+                    ))
+                ) : (
+                    <p>No hay productos disponibles en esta categoría.</p>
+                )}
             </section>
 
             <button onClick={goBackToCatalogo} style={styles.backButton}>Volver al Catálogo</button>

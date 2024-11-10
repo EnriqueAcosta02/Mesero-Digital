@@ -1,13 +1,18 @@
 import express from 'express';
-import { obtenerProductos, crearProducto } from '../controllers/productcontroller.js';
-
+import { obtenerProductos, crearProducto, editarProducto, eliminarProducto, uploadMiddleware } from '../controllers/productcontroller.js';
 
 const router = express.Router();
 
-// Ruta para obtener productos por tipo
+// Obtener productos por categoría
 router.get('/:categoria', obtenerProductos);
 
-// Ruta para crear un nuevo producto por tipo
-router.post('/:categoria', crearProducto);
+// Crear un nuevo producto
+router.post('/:categoria', uploadMiddleware, crearProducto);
+
+// Editar un producto existente
+router.put('/:categoria/:id', uploadMiddleware, editarProducto);
+
+// Eliminar un producto
+router.delete('/:categoria/:id', eliminarProducto);
 
 export default router;

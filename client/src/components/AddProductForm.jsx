@@ -1,4 +1,5 @@
 import React, { useState } from 'react';
+import { useNavigate } from 'react-router-dom'; // Importar useNavigate
 
 const AddProductForm = () => {
     const [product, setProduct] = useState({
@@ -6,34 +7,33 @@ const AddProductForm = () => {
         precio: '',
         ingredientes: [{ nombre: '', cantidad: '' }],
         tamaño: '', // Solo para pizzas
+        foto: null, // Para almacenar la imagen
     });
-    const [category, setCategory] = useState('hamburguesa');
+    const [category, setCategory] = useState('hamburguesas');
+    const navigate = useNavigate(); // Inicializar navigate
 
-    // Manejador de cambio para actualizar el estado de los campos del formulario
     const handleChange = (e) => {
         const { name, value } = e.target;
         setProduct({ ...product, [name]: value });
     };
 
-    // Manejador para cambiar la categoría
     const handleCategoryChange = (e) => {
         setCategory(e.target.value);
         setProduct({
             nombre: '',
             precio: '',
             ingredientes: [{ nombre: '', cantidad: '' }],
-            tamaño: '', // Solo para pizzas
+            tamaño: '',
+            foto: null, // Resetear foto al cambiar la categoría
         });
     };
 
-    // Manejador para actualizar los ingredientes
     const handleIngredientChange = (index, field, value) => {
         const updatedIngredients = [...product.ingredientes];
         updatedIngredients[index][field] = value;
         setProduct({ ...product, ingredientes: updatedIngredients });
     };
 
-    // Agregar un nuevo ingrediente
     const addIngredient = () => {
         setProduct({
             ...product,
@@ -41,11 +41,58 @@ const AddProductForm = () => {
         });
     };
 
-    // Manejador de envío de formulario
+    const handleFileChange = (e) => {
+        const file = e.target.files[0];
+        if (file) {
+            setProduct({ ...product, foto: file });
+        }
+    };
+
+    // Función para enviar el producto al backend para agregar
+    const submitProduct = async () => {
+        const url = `http://localhost:9999/productos/${category}`;
+
+        const formData = new FormData();
+        formData.append('nombre', product.nombre);
+        formData.append('precio', product.precio);
+        formData.append('ingredientes', JSON.stringify(product.ingredientes));
+        formData.append('tamaño', product.tamaño);
+        if (product.foto) formData.append('foto', product.foto);
+
+        try {
+            const response = await fetch(url, {
+                method: 'POST',
+                body: formData,
+            });
+
+            if (!response.ok) {
+                throw new Error('Error al agregar el producto');
+            }
+
+            const data = await response.json();
+            console.log('Producto agregado con éxito:', data);
+
+            // Resetear el formulario después de agregar
+            setProduct({
+                nombre: '',
+                precio: '',
+                ingredientes: [{ nombre: '', cantidad: '' }],
+                tamaño: '',
+                foto: null,
+            });
+        } catch (error) {
+            console.error(error.message);
+        }
+    };
+
     const handleSubmit = (e) => {
         e.preventDefault();
-        console.log(`Producto a agregar en la categoría ${category}:`, product);
-        // Aquí enviaremos los datos al backend
+        submitProduct();
+    };
+
+    // Función para volver al catálogo
+    const goBackToCatalog = () => {
+        navigate('/catalogo'); // Redirige a la ruta /productos
     };
 
     return (
@@ -53,10 +100,10 @@ const AddProductForm = () => {
             <label style={styles.label}>
                 Categoría:
                 <select value={category} onChange={handleCategoryChange} style={styles.input}>
-                    <option value="hamburguesa">Hamburguesa</option>
-                    <option value="lomito">Lomito</option>
-                    <option value="pizza">Pizza</option>
-                    <option value="bebida">Bebida</option>
+                    <option value="hamburguesas">Hamburguesa</option>
+                    <option value="lomitos">Lomito</option>
+                    <option value="pizzas">Pizza</option>
+                    <option value="bebidas">Bebida</option>
                 </select>
             </label>
 
@@ -72,7 +119,7 @@ const AddProductForm = () => {
                 />
             </label>
 
-            {category === 'pizza' && (
+            {category === 'pizzas' && (
                 <label style={styles.label}>
                     Tamaño:
                     <input 
@@ -98,7 +145,7 @@ const AddProductForm = () => {
                 />
             </label>
 
-            {(category === 'hamburguesa' || category === 'lomito' || category === 'pizza') && (
+            {(category === 'hamburguesas' || category === 'lomitos' || category === 'pizzas') && (
                 <>
                     <label style={styles.label}>Ingredientes:</label>
                     {product.ingredientes.map((ingrediente, index) => (
@@ -131,7 +178,27 @@ const AddProductForm = () => {
                 </>
             )}
 
-            <button type="submit" style={styles.button}>Agregar Producto</button>
+            {/* Campo para subir foto */}
+            <label style={styles.label}>
+                Foto del Producto:
+                <input 
+                    type="file" 
+                    onChange={handleFileChange} 
+                    style={styles.input}
+                />
+            </label>
+
+            <button type="submit" style={styles.button}>
+                Agregar Producto
+            </button>
+
+            {/* Botón para volver al catálogo */}
+            <button 
+                type="button" 
+                onClick={goBackToCatalog} 
+                style={styles.button}>
+                Volver al Catálogo
+            </button>
         </form>
     );
 };

@@ -43,7 +43,7 @@ const Register = () => {
 
                 if (loginResponse.ok) {
                     localStorage.setItem('token', loginData.token);
-                    navigate('/productos');
+                    navigate('/catalogo');
                 } else {
                     setMessage(loginData.message || 'Error al iniciar sesión después del registro');
                 }

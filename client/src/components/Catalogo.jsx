@@ -11,8 +11,13 @@ const Catalogo = () => {
     const handleBackToHome = () => {
         navigate('/'); // Navegar a la página de inicio
     };
+
     const goToAddProductPage = () => {
         navigate('/add-product'); // Redirige a la página de agregar producto
+    };
+
+    const goToEditProductPage = () => {
+        navigate('/edit-product'); // Redirige a la página de editar productos
     };
 
     return (
@@ -37,9 +42,18 @@ const Catalogo = () => {
                 <div style={styles.categoriaCard} onClick={() => handleCategoryClick('bebidas')}>
                     <h3>Bebidas</h3>
                 </div>
-                <div>
-                    <button onClick={goToAddProductPage}>Agregar Producto</button>
-                </div>
+            </div>
+
+            {/* Botón para agregar producto */}
+            <div style={styles.buttonContainer}>
+                <button onClick={goToAddProductPage} style={styles.addProductButton}>
+                    Agregar Producto
+                </button>
+
+                {/* Botón para editar productos */}
+                <button onClick={goToEditProductPage} style={styles.editProductButton}>
+                    Editar Productos
+                </button>
             </div>
         </div>
     );
@@ -66,14 +80,34 @@ const styles = {
         backgroundColor: '#f9f9f9',
     },
     backButton: {
-        backgroundColor: '#4CAF50', // Verde como los botones de inicio de sesión y registro
+        backgroundColor: '#4CAF50',
         color: 'white',
         padding: '10px 20px',
         border: 'none',
         borderRadius: '4px',
         cursor: 'pointer',
-        marginBottom: '20px', // Espacio antes de las categorías
-    }
+        marginBottom: '20px',
+    },
+    buttonContainer: {
+        marginTop: '20px',
+    },
+    addProductButton: {
+        backgroundColor: '#4CAF50',
+        color: 'white',
+        padding: '10px 20px',
+        border: 'none',
+        borderRadius: '4px',
+        cursor: 'pointer',
+        marginRight: '10px',
+    },
+    editProductButton: {
+        backgroundColor: '#ff9800',
+        color: 'white',
+        padding: '10px 20px',
+        border: 'none',
+        borderRadius: '4px',
+        cursor: 'pointer',
+    },
 };
 
 export default Catalogo;
