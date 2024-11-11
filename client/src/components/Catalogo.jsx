@@ -1,5 +1,6 @@
 import React from 'react';
 import { useNavigate } from 'react-router-dom';
+import '../App.css';  // Importamos el archivo CSS
 
 const Catalogo = () => {
     const navigate = useNavigate();
@@ -21,93 +22,42 @@ const Catalogo = () => {
     };
 
     return (
-        <div style={styles.catalogoContainer}>
-            <h1>Catálogo de Productos</h1>
+        <div className="catalogo-container">
+            <div className="catalogo-card">
+                <h1>Catálogo de Productos</h1>
 
-            {/* Botón para volver a Home */}
-            <button onClick={handleBackToHome} style={styles.backButton}>
-                Volver a Inicio
-            </button>
-
-            <div style={styles.categoriasGrid}>
-                <div style={styles.categoriaCard} onClick={() => handleCategoryClick('hamburguesas')}>
-                    <h3>Hamburguesas</h3>
-                </div>
-                <div style={styles.categoriaCard} onClick={() => handleCategoryClick('lomitos')}>
-                    <h3>Lomitos</h3>
-                </div>
-                <div style={styles.categoriaCard} onClick={() => handleCategoryClick('pizzas')}>
-                    <h3>Pizzas</h3>
-                </div>
-                <div style={styles.categoriaCard} onClick={() => handleCategoryClick('bebidas')}>
-                    <h3>Bebidas</h3>
-                </div>
-            </div>
-
-            {/* Botón para agregar producto */}
-            <div style={styles.buttonContainer}>
-                <button onClick={goToAddProductPage} style={styles.addProductButton}>
-                    Agregar Producto
+                {/* Botón para volver a Home */}
+                <button onClick={handleBackToHome} className="back-btn">
+                    Volver a Inicio
                 </button>
 
-                {/* Botón para editar productos */}
-                <button onClick={goToEditProductPage} style={styles.editProductButton}>
-                    Editar Productos
-                </button>
+                <div className="categorias-grid">
+                    <div className="categoria-card1" onClick={() => handleCategoryClick('hamburguesas')}>
+                        <h3>Hamburguesas</h3>
+                    </div>
+                    <div className="categoria-card2" onClick={() => handleCategoryClick('lomitos')}>
+                        <h3>Lomitos</h3>
+                    </div>
+                    <div className="categoria-card3" onClick={() => handleCategoryClick('pizzas')}>
+                        <h3>Pizzas</h3>
+                    </div>
+                    <div className="categoria-card4" onClick={() => handleCategoryClick('bebidas')}>
+                        <h3>Bebidas</h3>
+                    </div>
+                </div>
+
+                {/* Botones para agregar o editar productos */}
+                <div className="button-container">
+                    <button onClick={goToAddProductPage} className="add-product-btn">
+                        Agregar Producto
+                    </button>
+                    <button onClick={goToEditProductPage} className="edit-product-btn">
+                        Editar Productos
+                    </button>
+                </div>
             </div>
         </div>
     );
-};
-
-const styles = {
-    catalogoContainer: {
-        textAlign: 'center',
-        padding: '20px',
-    },
-    categoriasGrid: {
-        display: 'flex',
-        justifyContent: 'center',
-        gap: '20px',
-        flexWrap: 'wrap',
-    },
-    categoriaCard: {
-        border: '1px solid #ddd',
-        borderRadius: '8px',
-        padding: '20px',
-        width: '150px',
-        textAlign: 'center',
-        cursor: 'pointer',
-        backgroundColor: '#f9f9f9',
-    },
-    backButton: {
-        backgroundColor: '#4CAF50',
-        color: 'white',
-        padding: '10px 20px',
-        border: 'none',
-        borderRadius: '4px',
-        cursor: 'pointer',
-        marginBottom: '20px',
-    },
-    buttonContainer: {
-        marginTop: '20px',
-    },
-    addProductButton: {
-        backgroundColor: '#4CAF50',
-        color: 'white',
-        padding: '10px 20px',
-        border: 'none',
-        borderRadius: '4px',
-        cursor: 'pointer',
-        marginRight: '10px',
-    },
-    editProductButton: {
-        backgroundColor: '#ff9800',
-        color: 'white',
-        padding: '10px 20px',
-        border: 'none',
-        borderRadius: '4px',
-        cursor: 'pointer',
-    },
 };
 
 export default Catalogo;

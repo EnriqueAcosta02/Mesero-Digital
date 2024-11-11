@@ -46,6 +46,7 @@
   padding: 20px;
   width: 100%;
   box-sizing: border-box; /* Asegura que el padding no afecte el tamaño del contenedor */
+ 
 }
 
 /* Estilo para cada tarjeta de producto */
@@ -69,7 +70,7 @@
 }
 
 /* Estilo de la imagen del producto */
-.product-image {
+.product1-image {
   width: 100%;
   height: 200px;
   object-fit: cover;
@@ -168,4 +169,1315 @@
   background-color: #e65b52;
   transform: scale(1.05); /* Efecto de escala en el hover */
   box-shadow: 0 4px 8px rgba(0, 0, 0, 0.2); /* Añade sombra al pasar el mouse */
+}
+
+/* Estilos generales para el contenedor de la página */
+.home-card-container {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  height: 100vh;
+  background-color: #f4f4f9;
+  margin: 0;
+}
+
+/* Estilos para la tarjeta */
+.home-card {
+  background-color: white;
+  border-radius: 15px;
+  box-shadow: 0 4px 10px rgba(0, 0, 0, 0.1);
+  width: 350px;
+  padding: 20px;
+  text-align: center;
+  transition: transform 0.3s ease, box-shadow 0.3s ease;
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+}
+
+/* Efecto al pasar el mouse sobre la tarjeta */
+.home-card:hover {
+  transform: translateY(-10px);
+  box-shadow: 0 8px 20px rgba(0, 0, 0, 0.2);
+}
+
+/* Estilo para el logo */
+.home-card-logo {
+  width: 120px;
+  height: 120px;
+  margin-bottom: 15px;
+}
+
+/* Estilo para el título */
+.home-card-title {
+  font-size: 24px;
+  color: #333;
+  font-weight: bold;
+  margin-bottom: 15px;
+}
+
+/* Estilo para el contenedor del GIF */
+.home-card-gif {
+  margin-bottom: 20px;
+}
+
+/* Estilo para el GIF */
+.home-card-gif-image {
+  width: 100%;
+  height: auto;
+  max-width: 200px;
+  margin: 0 auto;
+  display: block;
+}
+
+/* Estilo para los botones */
+.home-card-buttons {
+  display: flex;
+  flex-direction: column;
+  gap: 15px;
+  width: 100%;
+}
+
+/* Botón común */
+.home-card-btn {
+  padding: 12px;
+  border: none;
+  border-radius: 25px;
+  font-size: 16px;
+  cursor: pointer;
+  width: 100%;
+  transition: transform 0.3s ease, box-shadow 0.3s ease;
+}
+
+/* Estilos del botón de "Iniciar sesión" */
+.home-card-login-btn {
+  background-color: #007BFF;
+  color: white;
+}
+
+/* Estilos del botón de "Registrarse" */
+.home-card-register-btn {
+  background-color: #28a745;
+  color: white;
+}
+
+/* Efecto al pasar el mouse sobre los botones */
+.home-card-btn:hover {
+  transform: scale(1.05);
+  box-shadow: 0 4px 8px rgba(0, 0, 0, 0.2);
+}
+
+/* Estilos principales */
+.login-container {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  height: 100vh;
+  background-color: #f0f0f0;
+  font-family: 'Arial', sans-serif;
+}
+
+.login-card {
+  background-color: white;
+  padding: 30px;
+  border-radius: 8px;
+  box-shadow: 0px 4px 15px rgba(0, 0, 0, 0.1);
+  width: 100%;
+  max-width: 400px;
+  transform: translateY(-20px);
+  opacity: 0;
+  animation: fadeIn 0.8s forwards;
+}
+
+.login-card h2 {
+  text-align: center;
+  font-size: 24px;
+  margin-bottom: 20px;
+  color: #333;
+}
+
+.input-group {
+  margin-bottom: 15px;
+}
+
+.input-group label {
+  display: block;
+  margin-bottom: 5px;
+  font-size: 14px;
+  color: #555;
+}
+
+.input-group input {
+  width: 100%;
+  padding: 10px;
+  font-size: 16px;
+  border: 1px solid #ddd;
+  border-radius: 4px;
+  outline: none;
+  transition: border-color 0.3s;
+}
+
+.input-group input:focus {
+  border-color: #4CAF50;
+}
+
+.login-btn {
+  width: 100%;
+  padding: 12px;
+  background-color: #4CAF50;
+  color: white;
+  font-size: 16px;
+  border: none;
+  border-radius: 4px;
+  cursor: pointer;
+  transition: background-color 0.3s;
+}
+
+.login-btn:hover {
+  background-color: #45a049;
+}
+
+.auth-links {
+  text-align: center;
+  margin-top: 15px;
+}
+
+.auth-links button {
+  background: none;
+  color: #4CAF50;
+  border: none;
+  cursor: pointer;
+  text-decoration: underline;
+  font-size: 14px;
+}
+
+.back-btn {
+  background-color: #f44336;
+  color: white;
+  padding: 10px 20px;
+  border: none;
+  border-radius: 4px;
+  cursor: pointer;
+  margin-top: 20px;
+  width: 100%;
+}
+
+.back-btn:hover {
+  background-color: #e53935;
+}
+
+/* Animaciones */
+@keyframes fadeIn {
+  to {
+      transform: translateY(0);
+      opacity: 1;
+  }
+}
+
+/* Estilos principales */
+.catalogo-container {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  min-height: 100vh;
+  background-color: #f4f7f6;
+  font-family: 'Arial', sans-serif;
+}
+
+.catalogo-card {
+  background-color: white;
+  padding: 30px;
+  border-radius: 8px;
+  box-shadow: 0px 4px 15px rgba(0, 0, 0, 0.1);
+  width: 100%;
+  max-width: 700px;
+  transform: translateY(-20px);
+  opacity: 0;
+  animation: fadeIn 0.8s forwards;
+  text-align: center;
+}
+
+.catalogo-card h1 {
+  font-size: 28px;
+  margin-bottom: 30px;
+  color: #333;
+}
+
+.categorias-grid {
+  display: flex;
+  justify-content: center;
+  gap: 20px;
+  flex-wrap: wrap;
+  margin-bottom: 30px;
+}
+
+.categoria-card1 {
+  cursor: pointer;
+  padding: 20px;
+  background-image: url('./assets/gif/hamburguesagif.gif'); /* Ruta del gif local */
+  background-size: cover;
+  background-position: center;
+  border-radius: 8px;
+  transition: background-color 0.3s;
+  position: relative;
+  min-height: 200px; /* Puedes ajustar el tamaño del área para que se vea bien */
+  color: white; /* Asegúrate de que el texto sea visible sobre el gif */
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  text-align: center;
+}
+.categoria-card1:hover::after {
+  content: '';
+  position: absolute;
+  top: 0;
+  left: 0;
+  right: 0;
+  bottom: 0;
+  background: rgba(0, 0, 0, 0.4); /* Color oscuro con opacidad */
+  border-radius: 8px; /* Mantener bordes redondeados */
+  transition: background 0.3s ease-in-out;
+}
+
+.categoria-card1 h3 {
+  font-size: 20px;
+  color: #ffffff;
+  z-index: 2;
+}
+
+.categoria-card1:hover {
+  transform: translateY(-5px);
+  opacity: 0.9;
+}
+
+.categoria-card2 {
+  cursor: pointer;
+  padding: 20px;
+  background-image: url('./assets/gif/lomitogif.webp'); /* Ruta del gif local */
+  background-size: cover;
+  background-position: center;
+  border-radius: 8px;
+  transition: background-color 0.3s;
+  position: relative;
+  min-height: 100px; /* Puedes ajustar el tamaño del área para que se vea bien */
+  color: white; /* Asegúrate de que el texto sea visible sobre el gif */
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  text-align: center;
+}
+.categoria-card2:hover::after {
+  content: '';
+  position: absolute;
+  top: 0;
+  left: 0;
+  right: 0;
+  bottom: 0;
+  background: rgba(0, 0, 0, 0.4); /* Color oscuro con opacidad */
+  border-radius: 8px; /* Mantener bordes redondeados */
+  transition: background 0.3s ease-in-out;
+}
+.categoria-card2 h3 {
+  font-size: 18px;
+  color: #ffffff;
+  z-index: 2;
+}
+
+.categoria-card2:hover {
+  transform: translateY(-5px);
+  opacity: 0.9;
+}
+
+.categoria-card3 {
+  cursor: pointer;
+  padding: 20px;
+  background-image: url('https://media1.giphy.com/media/v1.Y2lkPTc5MGI3NjExZHV3OW1xNWw2eDFvMHZnam44YmNvOWl0c2Vid3pvOHIyMGE5N3FmcCZlcD12MV9pbnRlcm5hbF9naWZfYnlfaWQmY3Q9Zw/HfDduwaex9cGs/giphy.webp'); /* Ruta del gif local */
+  background-size: cover;
+  background-position: center;
+  border-radius: 8px;
+  transition: background-color 0.3s;
+  position: relative;
+  min-height: 100px; /* Puedes ajustar el tamaño del área para que se vea bien */
+  color: white; /* Asegúrate de que el texto sea visible sobre el gif */
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  text-align: center;
+}
+
+.categoria-card3:hover::after {
+  content: '';
+  position: absolute;
+  top: 0;
+  left: 0;
+  right: 0;
+  bottom: 0;
+  background: rgba(0, 0, 0, 0.4); /* Color oscuro con opacidad */
+  border-radius: 8px; /* Mantener bordes redondeados */
+  transition: background 0.3s ease-in-out;
+}
+.categoria-card3 h3 {
+  font-size: 18px;
+  color: #ffffff;
+  z-index: 2;
+}
+
+.categoria-card3:hover {
+  transform: translateY(-5px);
+  opacity: 0.9;
+}
+
+.categoria-card4 {
+  cursor: pointer;
+  padding: 20px;
+  background-image: url('./assets/gif/bebidagif.webp'); /* Ruta del gif local */
+  background-size: cover;
+  background-position: center;
+  border-radius: 8px;
+  transition: background-color 0.3s;
+  position: relative;
+  min-height: 100px; /* Puedes ajustar el tamaño del área para que se vea bien */
+  color: white; /* Asegúrate de que el texto sea visible sobre el gif */
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  text-align: center;
+}
+
+.categoria-card4:hover::after {
+  content: '';
+  position: absolute;
+  top: 0;
+  left: 0;
+  right: 0;
+  bottom: 0;
+  background: rgba(0, 0, 0, 0.4); /* Color oscuro con opacidad */
+  border-radius: 8px; /* Mantener bordes redondeados */
+  transition: background 0.3s ease-in-out;
+}
+.categoria-card4 h3 {
+  font-size: 18px;
+  color: #ffffff;
+  z-index: 2;
+}
+
+.categoria-card4:hover {
+  transform: translateY(-5px);
+  opacity: 0.9;
+}
+.back-btn, .add-product-btn, .edit-product-btn {
+  padding: 12px 20px;
+  font-size: 16px;
+  border: none;
+  border-radius: 4px;
+  cursor: pointer;
+  width: 100%;
+  margin-top: 10px;
+}
+
+.back-btn {
+  background-color: #4CAF50;
+  color: white;
+}
+
+.back-btn:hover {
+  background-color: #45a049;
+}
+
+.add-product-btn {
+  background-color: #4CAF50;
+  color: white;
+}
+
+.add-product-btn:hover {
+  background-color: #45a049;
+}
+
+.edit-product-btn {
+  background-color: #ff9800;
+  color: white;
+}
+
+.edit-product-btn:hover {
+  background-color: #fb8c00;
+}
+
+.button-container {
+  display: flex;
+  gap: 10px;
+  justify-content: center;
+}
+
+@keyframes fadeIn {
+  to {
+      transform: translateY(0);
+      opacity: 1;
+  }
+}
+
+/* Estilos para el formulario de registro */
+.register-container {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  min-height: 100vh;
+  background-color: #f4f7f6;
+  font-family: 'Arial', sans-serif;
+}
+
+.register-card {
+  background-color: white;
+  padding: 30px;
+  border-radius: 8px;
+  box-shadow: 0px 4px 15px rgba(0, 0, 0, 0.1);
+  width: 100%;
+  max-width: 500px;
+  transform: translateY(-20px);
+  opacity: 0;
+  animation: fadeIn 0.8s forwards;
+  text-align: center;
+}
+
+.register-card h2 {
+  font-size: 28px;
+  margin-bottom: 30px;
+  color: #333;
+}
+
+.register-card form div {
+  margin-bottom: 20px;
+  text-align: left;
+}
+
+.register-card label {
+  font-size: 16px;
+  color: #333;
+  display: block;
+}
+
+.register-card input {
+  width: 100%;
+  padding: 12px;
+  font-size: 16px;
+  margin-top: 5px;
+  border: 1px solid #ddd;
+  border-radius: 4px;
+}
+
+.register-card button {
+  width: 100%;
+  padding: 12px 20px;
+  font-size: 16px;
+  border: none;
+  border-radius: 4px;
+  cursor: pointer;
+  background-color: #4CAF50;
+  color: white;
+  margin-top: 20px;
+}
+
+.register-card button:hover {
+  background-color: #45a049;
+}
+
+.back-btn {
+  background-color: #4CAF50;
+  color: white;
+  padding: 12px 20px;
+  border: none;
+  border-radius: 4px;
+  cursor: pointer;
+  margin-top: 20px;
+  width: 100%;
+}
+
+.back-btn:hover {
+  background-color: #45a049;
+}
+
+@keyframes fadeIn {
+  to {
+      transform: translateY(0);
+      opacity: 1;
+  }
+}
+.form-card {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  height: 100vh;
+  background-color: #f4f4f4;
+}
+
+.form-container {
+  display: flex;
+  flex-direction: column;
+  background-color: #fff;
+  padding: 20px;
+  border-radius: 8px;
+  box-shadow: 0px 4px 8px rgba(0, 0, 0, 0.1);
+  width: 350px;
+}
+
+.label {
+  display: flex;
+  flex-direction: column;
+  margin-bottom: 12px;
+  font-weight: bold;
+  font-size: 14px;
+  color: #333;
+}
+
+.input {
+  padding: 10px;
+  margin-top: 5px;
+  border: 1px solid #ddd;
+  border-radius: 5px;
+  width: 100%;
+  font-size: 14px;
+}
+
+.ingredient-container {
+  display: flex;
+  flex-direction: column;
+  margin-bottom: 10px;
+  width: 100%;
+}
+
+.add-button {
+  background-color: #4CAF50;
+  color: white;
+  padding: 10px;
+  border: none;
+  border-radius: 5px;
+  cursor: pointer;
+  margin-top: 10px;
+  font-size: 14px;
+}
+
+.button {
+  padding: 10px 20px;
+  background-color: #4CAF50;
+  color: white;
+  border: none;
+  border-radius: 5px;
+  cursor: pointer;
+  font-weight: bold;
+  font-size: 14px;
+  margin-top: 20px;
+}
+
+.edit-product-container {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  padding: 20px;
+  font-family: 'Arial', sans-serif;
+}
+
+.category-label {
+  margin-bottom: 10px;
+  font-size: 14px;
+  font-weight: bold;
+}
+
+.category-select {
+  padding: 10px;
+  width: 300px;
+  margin-bottom: 20px;
+  border: 1px solid #ccc;
+  border-radius: 4px;
+}
+
+.product-list {
+  margin-bottom: 20px;
+}
+
+.product-grid {
+  display: grid;
+  grid-template-columns: repeat(3, 1fr);
+  gap: 10px;
+}
+
+.product-card {
+  padding: 10px;
+  border: 1px solid #ccc;
+  border-radius: 4px;
+  text-align: center;
+  background-color: #f9f9f9;
+}
+
+.edit-button {
+  background-color: #4CAF50;
+  color: white;
+  border: none;
+  padding: 10px;
+  border-radius: 4px;
+  cursor: pointer;
+}
+
+.delete-button {
+  background-color: #f44336;
+  color: white;
+  border: none;
+  padding: 10px;
+  border-radius: 4px;
+  cursor: pointer;
+}
+
+.form-container {
+  width: 100%;
+  max-width: 600px;
+  margin-top: 20px;
+  padding: 20px;
+  border: 1px solid #ccc;
+  border-radius: 4px;
+  background-color: #f9f9f9;
+}
+
+.product-form {
+  display: flex;
+  flex-direction: column;
+}
+
+.form-label {
+  margin-bottom: 10px;
+  font-weight: bold;
+  font-size: 14px;
+}
+
+.form-input {
+  padding: 10px;
+  margin-bottom: 20px;
+  width: 100%;
+  border-radius: 4px;
+  border: 1px solid #ccc;
+}
+
+.product-image {
+  width: 100px;
+  height: auto;
+  margin-top: 10px;
+}
+
+.ingredient-container {
+  display: flex;
+  gap: 10px;
+}
+
+.add-ingredient-button {
+  background-color: #2196F3;
+  color: white;
+  padding: 10px;
+  border: none;
+  border-radius: 4px;
+  cursor: pointer;
+}
+
+.form-buttons {
+  display: flex;
+  justify-content: space-between;
+}
+
+.submit-button {
+  background-color: #4CAF50;
+  color: white;
+  padding: 10px 20px;
+  border: none;
+  border-radius: 4px;
+  cursor: pointer;
+}
+
+.back-button {
+  background-color: #2196F3;
+  color: white;
+  padding: 10px;
+  border: none;
+  border-radius: 4px;
+  cursor: pointer;
+  margin-top: 20px;
+}
+.menu-btn {
+    background: #2196F3;
+    border: none;
+    font-size: 24px;
+    cursor: pointer;
+}
+
+.user-menu {
+    position: absolute;
+    top: 40px;
+    right: 10px;
+    background-color: white;
+    border: 1px solid #ccc;
+    padding: 10px;
+    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+}
+
+.user-menu ul {
+    list-style-type: none;
+    padding: 0;
+    margin: 0;
+}
+
+.user-menu li {
+    padding: 8px 16px;
+    cursor: pointer;
+}
+
+.user-menu li:hover {
+    background-color: #f0f0f0;
+}
+
+.profile-card {
+  background-color: #fff;
+  padding: 20px;
+  border-radius: 8px;
+  box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+  width: 100%;
+  max-width: 500px;
+  margin: 0 auto;
+}
+
+.profile-card h1 {
+  font-size: 24px;
+  margin-bottom: 10px;
+  color: #333;
+}
+
+.profile-card p {
+  font-size: 18px;
+  color: #555;
+}
+
+.profile-card h2 {
+  font-size: 20px;
+  margin-top: 20px;
+  color: #333;
+}
+
+.profile-card label {
+  display: block;
+  font-size: 16px;
+  margin-bottom: 8px;
+}
+
+.profile-card input {
+  width: 100%;
+  padding: 10px;
+  margin-bottom: 20px;
+  border: 1px solid #ccc;
+  border-radius: 4px;
+}
+
+.profile-card button {
+  padding: 10px 20px;
+  background-color: #007BFF;
+  color: white;
+  border: none;
+  border-radius: 4px;
+  cursor: pointer;
+}
+
+.profile-card button:hover {
+  background-color: #0056b3;
+}
+
+.profile-card .error {
+  color: red;
+  font-size: 14px;
+}
+
+/* Estilos para el modal de perfil */
+.profile-modal {
+  position: fixed;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+  background-color: rgba(0, 0, 0, 0.5); /* Fondo oscuro */
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  z-index: 10;  /* Asegurarse de que el modal esté encima de otros elementos */
+}
+
+/* Card para el perfil */
+.profile-card {
+  background-color: white;
+  padding: 20px;
+  border-radius: 8px;
+  width: 300px;
+  text-align: center;
+  position: relative; /* Para posicionar el botón de cerrar */
+}
+
+/* Botón para cerrar el perfil */
+.close-modal-btn {
+  background-color: transparent;
+  border: none;
+  font-size: 18px;
+  cursor: pointer;
+  position: absolute;
+  top: 10px;
+  right: 10px;
+}
+
+.close-modal-btn:hover {
+  color: red;
+}
+
+/* Estilo para el botón de cerrar el modal */
+.close-btn {
+  background-color: #ff6347; /* Un color de fondo llamativo */
+  color: white;
+  padding: 10px 20px;
+  border: none;
+  border-radius: 5px;
+  cursor: pointer;
+  margin-top: 15px;
+}
+
+.close-btn:hover {
+  background-color: #ff4500; /* Cambiar a un color más oscuro cuando se pase el ratón */
+}
+
+/* Estilos generales para el Header */
+.header {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  padding: 1rem 2rem;
+  background-color: #fff;
+  box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
+  position: relative;
+}
+
+/* Logo */
+.logo-and-menu {
+  display: flex;
+  align-items: center;
+}
+
+.logoheader {
+  margin-right: 10px;
+}
+
+.logoheader-img {
+  height: 80px; /* Ajusta el tamaño del logo según necesites */
+}
+
+/* Estilo para el botón del menú */
+.menu-btn {
+  background: none;
+  border: none;
+  font-size: 30px;
+  cursor: pointer;
+  color: #333;
+}
+
+/* Menú desplegable */
+.dropdown-menuheader {
+  position: absolute;
+  top: 150px;
+  left: 0;
+  background-color: #fff;
+  border-radius: 8px;
+  box-shadow: 0 4px 8px rgba(0, 0, 0, 0.2);
+  width: 200px;
+  z-index: 1000;
+}
+
+.dropdown-menu ul {
+  list-style: none;
+  margin: 0;
+  padding: 10px;
+}
+
+.dropdown-menu li {
+  padding: 10px 15px;
+  cursor: pointer;
+  transition: background-color 0.3s ease;
+}
+
+.dropdown-menu li:hover {
+  background-color: #f0f0f0;
+}
+
+/* Estilos para la sección de carrito y usuario */
+.user-and-cart {
+  display: flex;
+  align-items: center;
+}
+
+/* Información del usuario */
+.user-info {
+  display: flex;
+  align-items: center;
+  margin-right: 20px;
+  
+}
+
+.profile-btn {
+  background: none;
+  border: none;
+  font-size: 16px;
+  cursor: pointer;
+  color: #fcfbfb;
+  margin-right: 10px;
+}
+
+.user-menu {
+  position: absolute;
+  top: 60px;
+  right: 20px;
+  background-color: #fff;
+  border-radius: 8px;
+  box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+  width: 150px;
+  z-index: 1000;
+}
+
+.user-menu ul {
+  list-style: none;
+  margin: 0;
+  padding: 10px;
+}
+
+.user-menu li {
+  padding: 10px 15px;
+  cursor: pointer;
+  transition: background-color 0.3s ease;
+}
+
+.user-menu li:hover {
+  background-color: #f0f0f0;
+}
+
+/* Estilo del icono de carrito */
+.cart-info {
+  display: flex;
+  align-items: center;
+  position: relative;
+}
+
+.cart-btn {
+  background: none;
+  border: none;
+  font-size: 24px;
+  cursor: pointer;
+  color: #333;
+}
+
+.cart-count {
+  position: absolute;
+  top: -5px;
+  right: -5px;
+  background-color: red;
+  color: white;
+  border-radius: 50%;
+  padding: 4px 8px;
+  font-size: 14px;
+}
+
+/* Header general */
+.header {
+  display: flex;
+  justify-content: space-between;
+  padding: 10px 20px;
+  background-color: #333;
+  color: #fff;
+  align-items: center;
+  position: relative;
+}
+
+.logo-and-menu {
+  display: flex;
+  align-items: center;
+}
+
+.menu-btn {
+  font-size: 30px;
+  background: none;
+  border: none;
+  color: #fff;
+  cursor: pointer;
+  margin-left: 15px;
+}
+
+/* Estilos del menú desplegable */
+.dropdown-menu {
+  position: absolute;
+  top: 80px; /* Ajusta este valor según la altura de tu botón */
+  left: 0;
+  background-color: #fff;
+  color: #333;
+  border-radius: 5px;
+  box-shadow: 0 4px 8px rgba(0, 0, 0, 0.2);
+  z-index: 10;
+  min-width: 150px;
+}
+
+/* Lista del menú */
+.dropdown-menuheader ul {
+  list-style: none;  /* Elimina los puntos de la lista */
+  margin: 0;  /* Elimina márgenes predeterminados */
+  padding: 0;  /* Elimina relleno por defecto */
+}
+
+/* Estilo de los elementos de la lista */
+.dropdown-menuheader li {
+  padding: 10px 15px;  /* Espaciado alrededor de los elementos */
+  transition: background-color 0.3s ease;  /* Transición para el hover */
+}
+
+/* Estilo de los enlaces dentro de los elementos */
+.dropdown-menuheader li a {
+  color: #333;  /* Color de texto */
+  text-decoration: none;  /* Sin subrayado */
+  display: block;  /* Hace que el enlace ocupe todo el ancho */
+  font-size: 14px;  /* Tamaño de fuente más pequeño */
+}
+
+/* Efecto hover para los elementos */
+.dropdown-menuheader li:hover {
+  background-color: #f1f1f1;  /* Color de fondo al pasar el ratón */
+}
+
+/* Efecto hover para los enlaces */
+.dropdown-menuheader li a:hover {
+  color: #000;  /* Color de texto al pasar el ratón */
+}
+
+/* Estilos del carrito */
+.cart-info {
+  display: flex;
+  align-items: center;
+}
+
+.cart-btn {
+  font-size: 24px;
+  background: none;
+  border: none;
+  color: #fff;
+  cursor: pointer;
+  position: relative;
+}
+
+.cart-count {
+  position: absolute;
+  top: -5px;
+  right: -5px;
+  background-color: red;
+  color: white;
+  border-radius: 50%;
+  padding: 2px 8px;
+  font-size: 14px;
+}
+
+/* Estilos para el Modal */
+.modal-overlay {
+  position: fixed;
+  top: 0;
+  left: 0;
+  right: 0;
+  bottom: 0;
+  background-color: rgba(0, 0, 0, 0.5);  /* Fondo semi-transparente */
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  z-index: 1000;  /* Asegúrate de que el modal esté encima de otros elementos */
+}
+
+.modal-content {
+  background-color: white;
+  padding: 20px;
+  border-radius: 8px;
+  width: 80%;
+  max-width: 500px;
+  text-align: center;
+  box-shadow: 0px 4px 6px rgba(0, 0, 0, 0.1);
+}
+
+.modal-content h2 {
+  font-size: 24px;
+  margin-bottom: 20px;
+}
+
+.modal-content p {
+  font-size: 18px;
+  margin-bottom: 20px;
+  line-height: 1.5;
+}
+
+.close-modal-btn {
+  background-color: #ff4747;
+  color: white;
+  padding: 10px 20px;
+  border: none;
+  border-radius: 5px;
+  cursor: pointer;
+  font-size: 16px;
+}
+
+.close-modal-btn:hover {
+  background-color: #e63946;
+}
+
+
+/* Estilos generales del modal Nosotros */
+.nosotros-modal-overlay {
+  position: fixed;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+  background-color: rgba(0, 0, 0, 0.5);  /* Fondo oscuro con algo de transparencia */
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  z-index: 9999;
+}
+
+.nosotros-modal-content {
+  background-color: #fff;
+  padding: 20px;
+  border-radius: 8px;
+  width: 90%;
+  max-width: 500px;
+  box-shadow: 0 4px 10px rgba(0, 0, 0, 0.2);
+  position: relative;
+}
+
+.nosotros-modal-title {
+  font-size: 24px;
+  font-weight: bold;
+  margin-bottom: 10px;
+  color: #333;
+}
+
+.nosotros-modal-description {
+  font-size: 16px;
+  margin-bottom: 20px;
+  color: #555;
+}
+
+.nosotros-close-modal-btn {
+  background-color: #ff5c5c;
+  color: white;
+  padding: 10px 20px;
+  border: none;
+  border-radius: 5px;
+  cursor: pointer;
+  font-size: 16px;
+  transition: background-color 0.3s ease;
+}
+
+.nosotros-close-modal-btn:hover {
+  background-color: #e04e4e;  /* Color más oscuro al pasar el cursor */
+}
+
+/* Estilos generales del modal Horario de Atención */
+.horario-modal-overlay {
+  position: fixed;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+  background-color: rgba(0, 0, 0, 0.5);  /* Fondo oscuro con algo de transparencia */
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  z-index: 9999;
+}
+
+.horario-modal-content {
+  background-color: #fff;
+  padding: 20px;
+  border-radius: 8px;
+  width: 90%;
+  max-width: 500px;
+  box-shadow: 0 4px 10px rgba(0, 0, 0, 0.2);
+  position: relative;
+}
+
+.horario-modal-title {
+  font-size: 24px;
+  font-weight: bold;
+  margin-bottom: 10px;
+  color: #333;
+}
+
+.horario-modal-description {
+  font-size: 16px;
+  margin-bottom: 20px;
+  color: #555;
+}
+
+.horario-close-modal-btn {
+  background-color: #ff5c5c;
+  color: white;
+  padding: 10px 20px;
+  border: none;
+  border-radius: 5px;
+  cursor: pointer;
+  font-size: 16px;
+  transition: background-color 0.3s ease;
+}
+
+.horario-close-modal-btn:hover {
+  background-color: #e04e4e;  /* Color más oscuro al pasar el cursor */
+}
+
+/* Estilos para el modal de Ubicación */
+
+.ubicacion-modal-overlay {
+  position: fixed;
+  top: 0;
+  left: 0;
+  right: 0;
+  bottom: 0;
+  background: rgba(0, 0, 0, 0.5);
+  display: flex;
+  justify-content: center;
+  align-items: center;
+}
+
+.ubicacion-modal-content {
+  background: #fff;
+  padding: 20px;
+  border-radius: 8px;
+  width: 90%;
+  max-width: 600px;
+}
+
+.ubicacion-close-modal-btn {
+  background: #e74c3c;
+  color: #fff;
+  border: none;
+  padding: 10px;
+  cursor: pointer;
+  font-size: 16px;
+  border-radius: 4px;
+  margin-top: 20px;
+}
+
+.ubicacion-modal-overlay p {
+  font-size: 16px;
+  color: #333;
+}
+
+.ubicacion-modal-content h2 {
+  font-size: 24px;
+  margin-bottom: 10px;
+  color: #2c3e50;
+}
+
+/* Estilos del mapa */
+.ubicacion-map-container {
+  width: 100%;
+  height: 400px;
+  border-radius: 8px;
+  overflow: hidden;
 }

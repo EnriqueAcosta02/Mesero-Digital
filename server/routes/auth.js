@@ -9,7 +9,7 @@ const router = express.Router();
 router.get('/profile', protect, async (req, res) => {
     try {
         const user = await User.findById(req.user.userId); // Obtén el usuario usando el ID decodificado en el token
-        res.status(200).json(user);
+        res.status(200).json(user); // Retorna los datos del usuario (incluyendo email)
     } catch (error) {
         res.status(500).json({ message: 'Error al obtener el perfil', error });
     }

@@ -1,5 +1,6 @@
 import React, { useState } from 'react';
 import { useNavigate } from 'react-router-dom';
+import '../App.css';  // Importamos el archivo CSS para los estilos
 
 const Register = () => {
     const [username, setUsername] = useState('');
@@ -61,69 +62,59 @@ const Register = () => {
     };
 
     return (
-        <div>
-            <h2>Registro</h2>
-            <form onSubmit={handleSubmit}>
-                <div>
-                    <label htmlFor="username">Usuario:</label>
-                    <input
-                        type="text"
-                        id="username"
-                        value={username}
-                        onChange={(e) => setUsername(e.target.value)}
-                        required
-                    />
-                </div>
-                <div>
-                    <label htmlFor="email">Correo Electrónico:</label>
-                    <input
-                        type="email"
-                        id="email"
-                        value={email}
-                        onChange={(e) => setEmail(e.target.value)}
-                        required
-                    />
-                </div>
-                <div>
-                    <label htmlFor="password">Contraseña:</label>
-                    <input
-                        type="password"
-                        id="password"
-                        value={password}
-                        onChange={(e) => setPassword(e.target.value)}
-                        required
-                    />
-                </div>
-                <div>
-                    <label htmlFor="confirmPassword">Repetir Contraseña:</label>
-                    <input
-                        type="password"
-                        id="confirmPassword"
-                        value={confirmPassword}
-                        onChange={(e) => setConfirmPassword(e.target.value)}
-                        required
-                    />
-                </div>
-                <button type="submit">Registrar</button>
-            </form>
-            <p>{message}</p>
+        <div className="register-container">
+            <div className="register-card">
+                <h2>Registro</h2>
+                <form onSubmit={handleSubmit}>
+                    <div>
+                        <label htmlFor="username">Usuario:</label>
+                        <input
+                            type="text"
+                            id="username"
+                            value={username}
+                            onChange={(e) => setUsername(e.target.value)}
+                            required
+                        />
+                    </div>
+                    <div>
+                        <label htmlFor="email">Correo Electrónico:</label>
+                        <input
+                            type="email"
+                            id="email"
+                            value={email}
+                            onChange={(e) => setEmail(e.target.value)}
+                            required
+                        />
+                    </div>
+                    <div>
+                        <label htmlFor="password">Contraseña:</label>
+                        <input
+                            type="password"
+                            id="password"
+                            value={password}
+                            onChange={(e) => setPassword(e.target.value)}
+                            required
+                        />
+                    </div>
+                    <div>
+                        <label htmlFor="confirmPassword">Repetir Contraseña:</label>
+                        <input
+                            type="password"
+                            id="confirmPassword"
+                            value={confirmPassword}
+                            onChange={(e) => setConfirmPassword(e.target.value)}
+                            required
+                        />
+                    </div>
+                    <button type="submit">Registrar</button>
+                </form>
+                <p>{message}</p>
 
-            {/* Botón de "Volver a Inicio" */}
-            <button onClick={goToHome} style={styles.backButton}>Volver a Inicio</button>
+                {/* Botón de "Volver a Inicio" */}
+                <button onClick={goToHome} className="back-btn">Volver a Inicio</button>
+            </div>
         </div>
     );
-};
-
-const styles = {
-    backButton: {
-        backgroundColor: '#4CAF50',  // Verde como en los otros botones
-        color: 'white',
-        padding: '10px 20px',
-        border: 'none',
-        borderRadius: '4px',
-        cursor: 'pointer',
-        marginTop: '20px',  // Margen para separar el botón
-    }
 };
 
 export default Register;

@@ -1,14 +1,23 @@
 import React, { useEffect, useState } from 'react';
 import { useParams, useNavigate } from 'react-router-dom';
+import Profile from './Profile';  // Importa el componente Profile
+import NosotrosModal from './Nosotros';  // Importa el modal de Nosotros
+import HorarioAtencion from './HorarioAtencion';  // Importa el modal de Horario de Atención
+import UbicacionModal from './UbicacionModal';  // Importa el modal de Ubicación
+import Header from './Header';  // Importa el componente Header
 import '../App.css'; // Asegúrate de que la ruta sea correcta
 
-
 const Productos = () => {
-    const { categoria } = useParams(); 
+    const { categoria } = useParams();
     const [productos, setProductos] = useState([]);
     const [cart, setCart] = useState(() => JSON.parse(localStorage.getItem('cart')) || []);
-    const navigate = useNavigate();
     const [user, setUser] = useState(null);
+    const [menuVisible, setMenuVisible] = useState(false); // Estado para mostrar/ocultar el menú
+    const [profileVisible, setProfileVisible] = useState(false); // Estado para controlar la visibilidad del perfil
+    const [isNosotrosModalOpen, setIsNosotrosModalOpen] = useState(false);  // Estado para controlar la visibilidad del modal "Nosotros"
+    const [isHorarioModalOpen, setIsHorarioModalOpen] = useState(false);  // Estado para controlar la visibilidad del modal "Horario de Atención"
+    const [isUbicacionModalOpen, setIsUbicacionModalOpen] = useState(false); // Estado para controlar la visibilidad del modal "Ubicación"
+    const navigate = useNavigate();
 
     useEffect(() => {
         const token = localStorage.getItem('token');
@@ -54,26 +63,44 @@ const Productos = () => {
         navigate('/carrito');
     };
 
+    const toggleMenu = () => {
+        setMenuVisible(!menuVisible); // Alternar visibilidad del menú
+    };
+
+    const toggleProfileModal = () => {
+        setProfileVisible(!profileVisible); // Alternar la visibilidad del modal de perfil
+    };
+
+    // Función para mostrar/ocultar el modal "Nosotros"
+    const toggleNosotrosModal = () => {
+        setIsNosotrosModalOpen(!isNosotrosModalOpen);
+    };
+
+    // Función para mostrar/ocultar el modal "Horario de Atención"
+    const toggleHorarioModal = () => {
+        setIsHorarioModalOpen(!isHorarioModalOpen);
+    };
+
+    // Función para mostrar/ocultar el modal "Ubicación"
+    const toggleUbicacionModal = () => {
+        setIsUbicacionModalOpen(!isUbicacionModalOpen);
+    };
+
     return (
         <div>
-            <div className="header">
-                {user ? (
-                    <div className="user-info">
-                        <span>Bienvenido, {user.username}</span>
-                        <button onClick={handleLogout} className="logout-btn">
-                            Cerrar Sesión
-                        </button>
-                    </div>
-                ) : (
-                    <span>No estás autenticado</span>
-                )}
-                <div className="cart-info">
-                    🛒 Carrito: {cart.length} artículos
-                    <button onClick={goToCart} className="view-cart-btn">
-                        Ver carrito
-                    </button>
-                </div>
-            </div>
+            {/* Integrando el Header en la página de productos */}
+            <Header 
+                user={user} 
+                toggleMenu={toggleMenu} 
+                menuVisible={menuVisible} 
+                handleLogout={handleLogout} 
+                cart={cart} 
+                goToCart={goToCart} 
+                toggleProfileModal={toggleProfileModal}
+                toggleNosotrosModal={toggleNosotrosModal} // Pasamos la función al Header
+                toggleHorarioModal={toggleHorarioModal} // Pasamos la función al Header
+                toggleUbicacionModal={toggleUbicacionModal} // Pasamos la función al Header
+            />
 
             <h1>{categoria.charAt(0).toUpperCase() + categoria.slice(1)}</h1>
 
@@ -86,9 +113,8 @@ const Productos = () => {
                                     ? `http://localhost:9999${producto.imagenUrl}` 
                                     : producto.imagenUrl || '/path/to/default-image.jpg'}
                                 alt={producto.nombre}
-                                className="product-image"
+                                className="product1-image"
                             />
-
                             <h3>{producto.nombre}</h3>
                             <p>Precio: Gs{producto.precio}</p>
                             {producto.ingredientes && (
@@ -114,6 +140,18 @@ const Productos = () => {
             </section>
 
             <button onClick={goBackToCatalogo} className="back-button">Volver al Catálogo</button>
+
+            {/* Mostrar el componente Profile solo si profileVisible es true */}
+            {profileVisible && <Profile user={user} closeModal={toggleProfileModal} />}
+
+            {/* Mostrar el modal de Nosotros si isNosotrosModalOpen es true */}
+            {isNosotrosModalOpen && <NosotrosModal isOpen={isNosotrosModalOpen} closeModal={toggleNosotrosModal} />}
+
+            {/* Mostrar el modal de Horario de Atención si isHorarioModalOpen es true */}
+            {isHorarioModalOpen && <HorarioAtencion isOpen={isHorarioModalOpen} closeModal={toggleHorarioModal} />}
+
+            {/* Mostrar el modal de Ubicación si isUbicacionModalOpen es true */}
+            {isUbicacionModalOpen && <UbicacionModal isOpen={isUbicacionModalOpen} closeModal={toggleUbicacionModal} />}
         </div>
     );
 };

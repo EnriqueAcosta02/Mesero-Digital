@@ -1,5 +1,6 @@
 import React, { useState } from 'react';
 import { useNavigate } from 'react-router-dom';
+import '../App.css';  // Importamos el archivo CSS
 
 const Login = () => {
     const [email, setEmail] = useState('');
@@ -48,54 +49,43 @@ const Login = () => {
     };
 
     return (
-        <div>
-            <h2>Iniciar Sesión</h2>
-            <form onSubmit={handleLoginSubmit}>
-                <div>
-                    <label htmlFor="email">Correo Electrónico:</label>
-                    <input
-                        type="email"
-                        id="email"
-                        name="email"
-                        value={email}
-                        onChange={(e) => setEmail(e.target.value)}
-                        required
-                    />
+        <div className="login-container">
+            <div className="login-card">
+                <h2>Iniciar Sesión</h2>
+                <form onSubmit={handleLoginSubmit}>
+                    <div className="input-group">
+                        <label htmlFor="email">Correo Electrónico:</label>
+                        <input
+                            type="email"
+                            id="email"
+                            name="email"
+                            value={email}
+                            onChange={(e) => setEmail(e.target.value)}
+                            required
+                            placeholder="Introduce tu correo electrónico"
+                        />
+                    </div>
+                    <div className="input-group">
+                        <label htmlFor="password">Contraseña:</label>
+                        <input
+                            type="password"
+                            id="password"
+                            name="password"
+                            value={password}
+                            onChange={(e) => setPassword(e.target.value)}
+                            required
+                            placeholder="Introduce tu contraseña"
+                        />
+                    </div>
+                    <button type="submit" className="login-btn">Iniciar Sesión</button>
+                </form>
+                <div className="auth-links">
+                    <p>¿No tienes cuenta? <button onClick={goToRegister}>Registrarse</button></p>
                 </div>
-                <div>
-                    <label htmlFor="password">Contraseña:</label>
-                    <input
-                        type="password"
-                        id="password"
-                        name="password"
-                        value={password}
-                        onChange={(e) => setPassword(e.target.value)}
-                        required
-                    />
-                </div>
-                <button type="submit">Iniciar Sesión</button>
-            </form>
-            <p>
-                ¿No tienes cuenta? 
-                <button onClick={goToRegister}>Registrarse</button>
-            </p>
-
-            {/* Botón de "Volver a Inicio" */}
-            <button onClick={goToHome} style={styles.backButton}>Volver a Inicio</button>
+                <button onClick={goToHome} className="back-btn">Volver a Inicio</button>
+            </div>
         </div>
     );
-};
-
-const styles = {
-    backButton: {
-        backgroundColor: '#4CAF50',
-        color: 'white',
-        padding: '10px 20px',
-        border: 'none',
-        borderRadius: '4px',
-        cursor: 'pointer',
-        marginTop: '20px',
-    }
 };
 
 export default Login;
