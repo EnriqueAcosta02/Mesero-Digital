@@ -41,6 +41,13 @@ const Profile = ({ closeModal }) => {
         fetchUserProfile();
     }, [navigate]);  // `navigate` como dependencia
 
+    const handleLogout = () => {
+        // Eliminar el token de localStorage para cerrar la sesión
+        localStorage.removeItem('token');
+        localStorage.removeItem('role');  // Si estás almacenando el rol también
+        navigate('/login');  // Redirigir al inicio de sesión
+    };
+
     if (loading) {
         return <div>Cargando...</div>; // Mensaje mientras se obtiene el perfil
     }
@@ -58,6 +65,9 @@ const Profile = ({ closeModal }) => {
                 <h1>Perfil</h1>
                 <p><strong>Nombre de usuario:</strong> {user.username}</p>
                 <p><strong>Email:</strong> {user.email}</p> {/* Mostrar el email del usuario */}
+
+                {/* Botón de Cerrar sesión */}
+                <button onClick={handleLogout} className="logout-btn">Cerrar sesión</button>
 
                 <button onClick={closeModal} className="close-btn">Cerrar</button>
             </div>

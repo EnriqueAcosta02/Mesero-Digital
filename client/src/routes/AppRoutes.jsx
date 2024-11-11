@@ -16,13 +16,13 @@ const AppRoutes = () => {
     const userRole = localStorage.getItem('role'); // Obtén el rol de usuario desde localStorage
 
     // Ruta protegida para usuarios autenticados
-    const ProtectedRoute = ({ element }) => {
-        return isAuthenticated ? element : <Navigate to="/no-auth" />;
+    const ProtectedRoute = ({ children }) => {
+        return isAuthenticated ? children : <Navigate to="/no-auth" />;
     };
 
     // Ruta protegida para administradores
-    const AdminProtectedRoute = ({ element }) => {
-        return isAuthenticated && userRole === 'admin' ? element : <Navigate to="/" />;
+    const AdminProtectedRoute = ({ children }) => {
+        return isAuthenticated && userRole === 'admin' ? children : <Navigate to="/" />;
     };
 
     return (
@@ -33,14 +33,56 @@ const AppRoutes = () => {
             <Route path="/register" element={<Register />} />
 
             {/* Rutas protegidas para todos los usuarios autenticados */}
-            <Route path="/catalogo" element={<ProtectedRoute element={<Catalogo />} />} />
-            <Route path="/carrito" element={<ProtectedRoute element={<Carrito />} />} />
-            <Route path="/productos/:categoria" element={<ProtectedRoute element={<Productos />} />} />
-            <Route path="/profile" element={<ProtectedRoute element={<Profile />} />} />
+            <Route 
+                path="/catalogo" 
+                element={
+                    <ProtectedRoute>
+                        <Catalogo />
+                    </ProtectedRoute>
+                } 
+            />
+            <Route 
+                path="/carrito" 
+                element={
+                    <ProtectedRoute>
+                        <Carrito />
+                    </ProtectedRoute>
+                } 
+            />
+            <Route 
+                path="/productos/:categoria" 
+                element={
+                    <ProtectedRoute>
+                        <Productos />
+                    </ProtectedRoute>
+                } 
+            />
+            <Route 
+                path="/profile" 
+                element={
+                    <ProtectedRoute>
+                        <Profile />
+                    </ProtectedRoute>
+                } 
+            />
 
             {/* Rutas protegidas solo para administradores */}
-            <Route path="/add-product" element={<AdminProtectedRoute element={<AddProductForm />} />} />
-            <Route path="/edit-product" element={<AdminProtectedRoute element={<EditProduct />} />} />
+            <Route 
+                path="/add-product" 
+                element={
+                    <AdminProtectedRoute>
+                        <AddProductForm />
+                    </AdminProtectedRoute>
+                } 
+            />
+            <Route 
+                path="/edit-product" 
+                element={
+                    <AdminProtectedRoute>
+                        <EditProduct />
+                    </AdminProtectedRoute>
+                } 
+            />
 
             {/* Ruta para usuarios no autenticados */}
             <Route path="/no-auth" element={<NoAuth />} />

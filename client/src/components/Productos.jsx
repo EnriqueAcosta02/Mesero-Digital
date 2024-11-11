@@ -1,22 +1,24 @@
 import React, { useEffect, useState } from 'react';
 import { useParams, useNavigate } from 'react-router-dom';
-import Profile from './Profile';  // Importa el componente Profile
-import NosotrosModal from './Nosotros';  // Importa el modal de Nosotros
-import HorarioAtencion from './HorarioAtencion';  // Importa el modal de Horario de Atención
-import UbicacionModal from './UbicacionModal';  // Importa el modal de Ubicación
-import Header from './Header';  // Importa el componente Header
-import '../App.css'; // Asegúrate de que la ruta sea correcta
+import Profile from './Profile';  
+import NosotrosModal from './Nosotros';  
+import HorarioAtencion from './HorarioAtencion';  
+import UbicacionModal from './UbicacionModal';  
+import Header from './Header';  
+import '../App.css'; 
 
 const Productos = () => {
     const { categoria } = useParams();
     const [productos, setProductos] = useState([]);
     const [cart, setCart] = useState(() => JSON.parse(localStorage.getItem('cart')) || []);
     const [user, setUser] = useState(null);
-    const [menuVisible, setMenuVisible] = useState(false); // Estado para mostrar/ocultar el menú
-    const [profileVisible, setProfileVisible] = useState(false); // Estado para controlar la visibilidad del perfil
-    const [isNosotrosModalOpen, setIsNosotrosModalOpen] = useState(false);  // Estado para controlar la visibilidad del modal "Nosotros"
-    const [isHorarioModalOpen, setIsHorarioModalOpen] = useState(false);  // Estado para controlar la visibilidad del modal "Horario de Atención"
-    const [isUbicacionModalOpen, setIsUbicacionModalOpen] = useState(false); // Estado para controlar la visibilidad del modal "Ubicación"
+    const [menuVisible, setMenuVisible] = useState(false); 
+    const [profileVisible, setProfileVisible] = useState(false); 
+    const [isNosotrosModalOpen, setIsNosotrosModalOpen] = useState(false); 
+    const [isHorarioModalOpen, setIsHorarioModalOpen] = useState(false); 
+    const [isUbicacionModalOpen, setIsUbicacionModalOpen] = useState(false); 
+    const [selectedProduct, setSelectedProduct] = useState(null); // Estado para el producto seleccionado
+    const [quantity, setQuantity] = useState(1); // Contador para la cantidad de productos
     const navigate = useNavigate();
 
     useEffect(() => {
@@ -47,7 +49,8 @@ const Productos = () => {
     }, [cart]);
 
     const handleAddToCart = (producto) => {
-        setCart([...cart, producto]);
+        setCart([...cart, { ...producto, quantity }]);
+        setQuantity(1); // Reset quantity after adding
     };
 
     const handleLogout = () => {
@@ -64,31 +67,36 @@ const Productos = () => {
     };
 
     const toggleMenu = () => {
-        setMenuVisible(!menuVisible); // Alternar visibilidad del menú
+        setMenuVisible(!menuVisible); 
     };
 
     const toggleProfileModal = () => {
-        setProfileVisible(!profileVisible); // Alternar la visibilidad del modal de perfil
+        setProfileVisible(!profileVisible); 
     };
 
-    // Función para mostrar/ocultar el modal "Nosotros"
     const toggleNosotrosModal = () => {
         setIsNosotrosModalOpen(!isNosotrosModalOpen);
     };
 
-    // Función para mostrar/ocultar el modal "Horario de Atención"
     const toggleHorarioModal = () => {
         setIsHorarioModalOpen(!isHorarioModalOpen);
     };
 
-    // Función para mostrar/ocultar el modal "Ubicación"
     const toggleUbicacionModal = () => {
         setIsUbicacionModalOpen(!isUbicacionModalOpen);
     };
 
+    const handleProductClick = (producto) => {
+        setSelectedProduct(producto);
+    };
+
+    const handleQuantityChange = (e) => {
+        const value = Math.max(1, e.target.value); // Evitar que la cantidad sea menor que 1
+        setQuantity(value);
+    };
+
     return (
         <div>
-            {/* Integrando el Header en la página de productos */}
             <Header 
                 user={user} 
                 toggleMenu={toggleMenu} 
@@ -97,9 +105,9 @@ const Productos = () => {
                 cart={cart} 
                 goToCart={goToCart} 
                 toggleProfileModal={toggleProfileModal}
-                toggleNosotrosModal={toggleNosotrosModal} // Pasamos la función al Header
-                toggleHorarioModal={toggleHorarioModal} // Pasamos la función al Header
-                toggleUbicacionModal={toggleUbicacionModal} // Pasamos la función al Header
+                toggleNosotrosModal={toggleNosotrosModal} 
+                toggleHorarioModal={toggleHorarioModal} 
+                toggleUbicacionModal={toggleUbicacionModal} 
             />
 
             <h1>{categoria.charAt(0).toUpperCase() + categoria.slice(1)}</h1>
@@ -107,31 +115,30 @@ const Productos = () => {
             <section className="catalog-container">
                 {productos.length > 0 ? (
                     productos.map((producto) => (
-                        <div key={producto._id} className="product-card">
+                        <div key={producto._id} className="product-card" onClick={() => handleProductClick(producto)}>
                             <img
                                 src={producto.imagenUrl && !producto.imagenUrl.startsWith('http') 
                                     ? `http://localhost:9999${producto.imagenUrl}` 
                                     : producto.imagenUrl || '/path/to/default-image.jpg'}
                                 alt={producto.nombre}
-                                className="product1-image"
+                                className="product-image"
                             />
-                            <h3>{producto.nombre}</h3>
-                            <p>Precio: Gs{producto.precio}</p>
+                            <h3 className="modaltitulo">{producto.nombre}</h3>
+                            <p className="product-price">Gs {producto.precio}</p>
                             {producto.ingredientes && (
                                 <>
-                                    <h4>Ingredientes:</h4>
+                                    <h4 className="modaltitulo">Ingredientes:</h4>
                                     <ul>
-                                        {producto.ingredientes.map((ingrediente) => (
+                                        {producto.ingredientes.slice(0, 3).map((ingrediente) => (
                                             <li key={ingrediente._id}>
                                                 {ingrediente.nombre} - {ingrediente.cantidad}
                                             </li>
                                         ))}
+                                        {producto.ingredientes.length > 3 && <li>Ver más...</li>}
                                     </ul>
                                 </>
                             )}
-                            <button onClick={() => handleAddToCart(producto)} className="cart-button">
-                                Agregar al carrito 🛒
-                            </button>
+                            
                         </div>
                     ))
                 ) : (
@@ -152,6 +159,51 @@ const Productos = () => {
 
             {/* Mostrar el modal de Ubicación si isUbicacionModalOpen es true */}
             {isUbicacionModalOpen && <UbicacionModal isOpen={isUbicacionModalOpen} closeModal={toggleUbicacionModal} />}
+
+            {/* Modal de detalles del producto */}
+            {selectedProduct && (
+                <div className="new-modal">
+                    <div className="new-modal-content">
+                        <button onClick={() => setSelectedProduct(null)} className="new-modal-close">X</button>
+                        <div className="new-modal-product-card">
+                            <img 
+                                src={selectedProduct.imagenUrl && !selectedProduct.imagenUrl.startsWith('http') 
+                                    ? `http://localhost:9999${selectedProduct.imagenUrl}` 
+                                    : selectedProduct.imagenUrl || '/path/to/default-image.jpg'} 
+                                alt={selectedProduct.nombre} 
+                                className="new-modal-product-image" 
+                            />
+                            <h3 className="modaltitulo">{selectedProduct.nombre}</h3>
+                            <p className="new-modal-price">Gs {selectedProduct.precio}</p>
+                            <h4 className="modaltitulo">Ingredientes:</h4>
+                            <ul>
+                                {selectedProduct.ingredientes.map((ingrediente) => (
+                                    <li key={ingrediente._id}>
+                                        {ingrediente.nombre} - {ingrediente.cantidad}
+                                    </li>
+                                ))}
+                            </ul>
+
+                            {/* Contador de cantidad de productos */}
+                            <div className="quantity-selector">
+                                <button onClick={() => setQuantity(quantity - 1)} disabled={quantity <= 1}>-</button>
+                                <input 
+                                    type="number" 
+                                    value={quantity} 
+                                    onChange={handleQuantityChange} 
+                                    min="1" 
+                                    className="quantity-input" 
+                                />
+                                <button onClick={() => setQuantity(quantity + 1)}>+</button>
+                            </div>
+
+                            <button onClick={() => handleAddToCart(selectedProduct)} className="new-modal-cart-button">
+                                Agregar al carrito 🛒
+                            </button>
+                        </div>
+                    </div>
+                </div>
+            )}
         </div>
     );
 };

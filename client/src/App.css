@@ -128,11 +128,6 @@
   box-shadow: 0 4px 8px rgba(0, 0, 0, 0.2); /* Añade sombra al pasar el mouse */
 }
 
-/* Estilo para el encabezado */
-.header {
-  padding: 10px;
-  border-bottom: 1px solid #ccc;
-}
 
 /* Estilo para la información del usuario */
 .user-info {
@@ -1042,175 +1037,63 @@
 .close-btn:hover {
   background-color: #ff4500; /* Cambiar a un color más oscuro cuando se pase el ratón */
 }
-
-/* Estilos generales para el Header */
+/* Header general */
 .header {
+  background-color: #333;
+  color: #fff;
+  
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+}
+
+/* Contenedor para logo, menú, usuario y carrito en una sola fila */
+.top-header {
   display: flex;
   justify-content: space-between;
   align-items: center;
-  padding: 1rem 2rem;
-  background-color: #fff;
-  box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
-  position: relative;
+  width: 100%;
+  max-width: 1200px;
+  margin: 1px;
 }
 
-/* Logo */
+/* Logo y menú alineados a la izquierda */
 .logo-and-menu {
   display: flex;
   align-items: center;
+  margin: 5px;
 }
 
-.logoheader {
-  margin-right: 10px;
+.logoheader{
+  margin: 5px;
 }
-
 .logoheader-img {
-  height: 80px; /* Ajusta el tamaño del logo según necesites */
+  width: 80px;
+  margin-right: 10px;
+  
 }
-
-/* Estilo para el botón del menú */
+.menu{
+  margin: 5px;
+}
+.user-info{
+  margin: 5px;
+}
+.cart-info{
+  margin: 5px;
+}
 .menu-btn {
+  font-size: 24px;
   background: none;
   border: none;
-  font-size: 30px;
+  color: #fff;
   cursor: pointer;
-  color: #333;
 }
 
 /* Menú desplegable */
 .dropdown-menuheader {
   position: absolute;
-  top: 150px;
-  left: 0;
-  background-color: #fff;
-  border-radius: 8px;
-  box-shadow: 0 4px 8px rgba(0, 0, 0, 0.2);
-  width: 200px;
-  z-index: 1000;
-}
-
-.dropdown-menu ul {
-  list-style: none;
-  margin: 0;
-  padding: 10px;
-}
-
-.dropdown-menu li {
-  padding: 10px 15px;
-  cursor: pointer;
-  transition: background-color 0.3s ease;
-}
-
-.dropdown-menu li:hover {
-  background-color: #f0f0f0;
-}
-
-/* Estilos para la sección de carrito y usuario */
-.user-and-cart {
-  display: flex;
-  align-items: center;
-}
-
-/* Información del usuario */
-.user-info {
-  display: flex;
-  align-items: center;
-  margin-right: 20px;
-  
-}
-
-.profile-btn {
-  background: none;
-  border: none;
-  font-size: 16px;
-  cursor: pointer;
-  color: #fcfbfb;
-  margin-right: 10px;
-}
-
-.user-menu {
-  position: absolute;
-  top: 60px;
-  right: 20px;
-  background-color: #fff;
-  border-radius: 8px;
-  box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
-  width: 150px;
-  z-index: 1000;
-}
-
-.user-menu ul {
-  list-style: none;
-  margin: 0;
-  padding: 10px;
-}
-
-.user-menu li {
-  padding: 10px 15px;
-  cursor: pointer;
-  transition: background-color 0.3s ease;
-}
-
-.user-menu li:hover {
-  background-color: #f0f0f0;
-}
-
-/* Estilo del icono de carrito */
-.cart-info {
-  display: flex;
-  align-items: center;
-  position: relative;
-}
-
-.cart-btn {
-  background: none;
-  border: none;
-  font-size: 24px;
-  cursor: pointer;
-  color: #333;
-}
-
-.cart-count {
-  position: absolute;
-  top: -5px;
-  right: -5px;
-  background-color: red;
-  color: white;
-  border-radius: 50%;
-  padding: 4px 8px;
-  font-size: 14px;
-}
-
-/* Header general */
-.header {
-  display: flex;
-  justify-content: space-between;
-  padding: 10px 20px;
-  background-color: #333;
-  color: #fff;
-  align-items: center;
-  position: relative;
-}
-
-.logo-and-menu {
-  display: flex;
-  align-items: center;
-}
-
-.menu-btn {
-  font-size: 30px;
-  background: none;
-  border: none;
-  color: #fff;
-  cursor: pointer;
-  margin-left: 15px;
-}
-
-/* Estilos del menú desplegable */
-.dropdown-menu {
-  position: absolute;
-  top: 80px; /* Ajusta este valor según la altura de tu botón */
-  left: 0;
+  top: 80px;
+  left: 260px;
   background-color: #fff;
   color: #333;
   border-radius: 5px;
@@ -1219,41 +1102,45 @@
   min-width: 150px;
 }
 
-/* Lista del menú */
 .dropdown-menuheader ul {
-  list-style: none;  /* Elimina los puntos de la lista */
-  margin: 0;  /* Elimina márgenes predeterminados */
-  padding: 0;  /* Elimina relleno por defecto */
+  list-style: none;
+  margin: 0;
+  padding: 0;
 }
 
-/* Estilo de los elementos de la lista */
 .dropdown-menuheader li {
-  padding: 10px 15px;  /* Espaciado alrededor de los elementos */
-  transition: background-color 0.3s ease;  /* Transición para el hover */
+  padding: 10px 15px;
 }
 
-/* Estilo de los enlaces dentro de los elementos */
 .dropdown-menuheader li a {
-  color: #333;  /* Color de texto */
-  text-decoration: none;  /* Sin subrayado */
-  display: block;  /* Hace que el enlace ocupe todo el ancho */
-  font-size: 14px;  /* Tamaño de fuente más pequeño */
+  color: #333;
+  text-decoration: none;
+  display: block;
+  font-size: 14px;
 }
 
-/* Efecto hover para los elementos */
 .dropdown-menuheader li:hover {
-  background-color: #f1f1f1;  /* Color de fondo al pasar el ratón */
+  background-color: #f1f1f1;
 }
 
-/* Efecto hover para los enlaces */
-.dropdown-menuheader li a:hover {
-  color: #000;  /* Color de texto al pasar el ratón */
-}
-
-/* Estilos del carrito */
-.cart-info {
+/* Usuario y carrito alineados a la derecha */
+.user-and-cart {
   display: flex;
   align-items: center;
+  gap: 15px;
+  margin: 5px;
+}
+
+.profile-btn {
+  font-size: 16px;
+  color: #fff;
+  background: none;
+  border: none;
+  cursor: pointer;
+}
+
+.cart-info {
+  position: relative;
 }
 
 .cart-btn {
@@ -1275,6 +1162,33 @@
   padding: 2px 8px;
   font-size: 14px;
 }
+
+/* Secciones de categorías debajo del contenedor principal */
+.category-sections {
+  display: flex;
+  justify-content: space-around;
+  width: 100%;
+  max-width: 1200px;
+  margin-top: 5px;
+  padding: 10px 0;
+  background-color: #333;
+}
+
+.category-section {
+  background-color: #333;
+  color: white;
+  padding: 10px 20px;
+  cursor: pointer;
+  text-align: center;
+  flex: 1;
+  margin: 0 5px;
+  transition: background-color 0.3s ease;
+}
+
+.category-section:hover {
+  background-color: #45a049;
+}
+
 
 /* Estilos para el Modal */
 .modal-overlay {
@@ -1481,3 +1395,191 @@
   border-radius: 8px;
   overflow: hidden;
 }
+.logout-btn {
+  background-color: red;
+  color: white;
+  padding: 10px 20px;
+  border: none;
+  cursor: pointer;
+  margin-top: 10px;
+}
+
+.logout-btn:hover {
+  background-color: darkred;
+}
+
+/* Estilo para los cards de productos */
+.catalog-container {
+  display: grid;
+  grid-template-columns: repeat(auto-fill, minmax(280px, 1fr));
+  gap: 20px;
+  padding: 5px;
+  margin: 5px;
+}
+
+.product-card {
+  background-color: #fff;
+  border-radius: 8px;
+  box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
+  padding: 5px;
+  text-align: center;
+  display: flex;
+  flex-direction: column;
+  justify-content: space-between;
+  height: 350px;
+  cursor: pointer;
+  transition: transform 0.3s ease, box-shadow 0.3s ease;
+  
+}
+
+.product-card:hover {
+  transform: scale(1.05);
+  box-shadow: 0 6px 10px rgba(0, 0, 0, 0.2);
+}
+
+.product-image {
+  width: 100%; /* La imagen ocupa todo el ancho del contenedor */
+  height: 120px; /* Puedes ajustar la altura según lo necesites */
+  object-fit: cover; /* Asegura que la imagen cubra todo el contenedor sin perder proporciones */
+  border-radius: 8px; /* Para bordes redondeados, opcional */
+}
+
+
+.product-price {
+  font-size: 1.9rem;
+  font-weight: bold;
+  color: #e67e22; /* Naranja brillante */
+  margin: 5px;
+  font-weight: bold;
+  
+}
+
+.cart-button {
+  background-color: #28a745;
+  color: white;
+  border: none;
+  padding: 10px;
+  border-radius: 4px;
+  cursor: pointer;
+  margin-top: auto;
+  transition: background-color 0.3s ease;
+}
+
+.cart-button:hover {
+  background-color: #218838;
+}
+
+.new-modal {
+  position: fixed;
+  top: 0;
+  left: 0;
+  right: 0;
+  bottom: 70px;
+  background-color: rgba(0, 0, 0, 0.5);
+  display: flex;
+  justify-content: center;
+  align-items: center;
+}
+
+.new-modal-content {
+  background-color: white;
+
+ 
+  border-radius: 8px;
+  width: 90%;
+  max-width: 500px;
+}
+
+.new-modal-close {
+  background: transparent;
+  border: none;
+  font-size: 1.5rem;
+  cursor: pointer;
+  position: absolute;
+  top: 10px;
+  right: 10px;
+}
+
+.new-modal-product-card {
+  text-align: center;
+}
+
+.new-modal-product-image {
+  max-width: 100%;
+  height: 200px;
+  object-fit: cover;
+  border-radius: 8px;
+}
+
+.new-modal-price {
+  font-size: 1.8rem;
+  color: #e67e22;
+  margin: 5px;
+  font-weight: bold;
+  
+}
+
+.new-modal-cart-button {
+  background-color: #28a745;
+  color: white;
+  border: none;
+  padding: 10px;
+  border-radius: 4px;
+  cursor: pointer;
+  margin-top: 10px;
+}
+
+.new-modal-cart-button:hover {
+  background-color: #218838;
+}
+
+.back-button {
+  background-color: #3498db;
+  color: white;
+  padding: 10px;
+  border: none;
+  border-radius: 5px;
+  cursor: pointer;
+  margin-top: 20px;
+  transition: background-color 0.3s ease;
+}
+
+.back-button:hover {
+  background-color: #2980b9;
+}
+
+.quantity-selector {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  margin-top: 10px;
+}
+
+.quantity-selector button {
+  background-color: #e67e22;
+  color: white;
+  border: none;
+  padding: 5px 10px;
+  font-size: 1.2rem;
+  cursor: pointer;
+}
+
+.quantity-selector input {
+  width: 50px;
+  text-align: center;
+  padding: 5px;
+  font-size: 1.2rem;
+  margin: 0 10px;
+  border: 1px solid #ccc;
+  border-radius: 4px;
+}
+
+.quantity-selector button:disabled {
+  background-color: #ccc;
+  cursor: not-allowed;
+}
+.modaltitulo{
+  margin: 1px;
+
+}
+
