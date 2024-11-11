@@ -1,15 +1,16 @@
 import express from 'express';
-import bcrypt from 'bcryptjs';  // Para encriptar las contraseñas
-import jwt from 'jsonwebtoken'; // Para generar el JWT
-import User from '../models/User.js';  // Asegúrate de que el modelo User está bien definido
-import protect from '../middleware/authMiddleware.js'; // Importa el middleware
+import bcrypt from 'bcryptjs';
+import jwt from 'jsonwebtoken';
+import User from '../models/User.js';
+import protect from '../middleware/authMiddleware.js';
 
 const router = express.Router();
+
 // Ruta protegida (solo accesible si el usuario está autenticado)
 router.get('/profile', protect, async (req, res) => {
     try {
-        const user = await User.findById(req.user.userId); // Obtén el usuario usando el ID decodificado en el token
-        res.status(200).json(user); // Retorna los datos del usuario (incluyendo email)
+        const user = await User.findById(req.user.userId);
+        res.status(200).json(user);
     } catch (error) {
         res.status(500).json({ message: 'Error al obtener el perfil', error });
     }
@@ -18,9 +19,9 @@ router.get('/profile', protect, async (req, res) => {
 // Ruta para registrar un usuario
 router.post('/register', async (req, res) => {
     try {
-        const { username, email, password } = req.body;
+        const { username, email, password, role } = req.body;
 
-        // Lógica para validar si el usuario ya existe
+        // Verificar si el usuario ya existe
         const existingUser = await User.findOne({ email });
         if (existingUser) {
             return res.status(400).json({ message: 'El usuario ya existe' });
@@ -33,6 +34,7 @@ router.post('/register', async (req, res) => {
             username,
             email,
             password: hashedPassword,
+            role: role || 'user' // Asignar el rol proporcionado o 'user' como valor por defecto
         });
 
         await newUser.save();
@@ -60,14 +62,15 @@ router.post('/login', async (req, res) => {
 
         // Crear un JWT token
         const token = jwt.sign(
-            { userId: user._id, username: user.username }, // Información a guardar en el token
-            'secreto_jwt', // El secreto para firmar el JWT (debería ser más complejo y guardado de forma segura)
-            { expiresIn: '1h' } // El token expira en 1 hora
+            { userId: user._id, username: user.username, role: user.role }, // Incluye el rol en el token
+            'secreto_jwt', 
+            { expiresIn: '1h' }
         );
 
         res.status(200).json({
             message: 'Inicio de sesión exitoso',
             token, // Enviar el token al cliente
+            role: user.role // También envía el rol al cliente
         });
     } catch (error) {
         res.status(500).json({ message: 'Error al iniciar sesión', error });

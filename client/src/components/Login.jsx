@@ -24,10 +24,12 @@ const Login = () => {
             });
 
             const data = await response.json();
+            
 
             if (response.ok) {
                 // Guardar el token en localStorage
                 localStorage.setItem('token', data.token);
+                localStorage.setItem('role', data.role);
                 console.log('Inicio de sesión exitoso');
                 navigate('/catalogo');  // Redirigir a la página de catálogo
             } else {

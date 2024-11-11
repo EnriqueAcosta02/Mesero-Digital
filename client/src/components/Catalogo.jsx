@@ -1,37 +1,44 @@
-import React from 'react';
+import React, { useEffect, useState } from 'react';
 import { useNavigate } from 'react-router-dom';
-import '../App.css';  // Importamos el archivo CSS
+import '../App.css';
 
 const Catalogo = () => {
     const navigate = useNavigate();
+    const [isAdmin, setIsAdmin] = useState(false);
+
+    useEffect(() => {
+        // Verifica el rol del usuario desde localStorage
+        const userRole = localStorage.getItem('role'); // Obtenemos el rol desde localStorage
+        setIsAdmin(userRole === 'admin');
+    }, []);
 
     const handleCategoryClick = (categoria) => {
         navigate(`/productos/${categoria}`);
     };
 
     const handleBackToHome = () => {
-        navigate('/'); // Navegar a la página de inicio
+        navigate('/');
     };
 
     const goToAddProductPage = () => {
-        navigate('/add-product'); // Redirige a la página de agregar producto
+        if (isAdmin) navigate('/add-product');
     };
 
     const goToEditProductPage = () => {
-        navigate('/edit-product'); // Redirige a la página de editar productos
+        if (isAdmin) navigate('/edit-product');
     };
-
+    console.log(localStorage.getItem('role'));
     return (
         <div className="catalogo-container">
             <div className="catalogo-card">
                 <h1>Catálogo de Productos</h1>
 
-                {/* Botón para volver a Home */}
                 <button onClick={handleBackToHome} className="back-btn">
                     Volver a Inicio
                 </button>
 
                 <div className="categorias-grid">
+                    {/* Muestra las categorías */}
                     <div className="categoria-card1" onClick={() => handleCategoryClick('hamburguesas')}>
                         <h3>Hamburguesas</h3>
                     </div>
@@ -46,15 +53,16 @@ const Catalogo = () => {
                     </div>
                 </div>
 
-                {/* Botones para agregar o editar productos */}
-                <div className="button-container">
-                    <button onClick={goToAddProductPage} className="add-product-btn">
-                        Agregar Producto
-                    </button>
-                    <button onClick={goToEditProductPage} className="edit-product-btn">
-                        Editar Productos
-                    </button>
-                </div>
+                {isAdmin && (
+                    <div className="button-container">
+                        <button onClick={goToAddProductPage} className="add-product-btn">
+                            Agregar Producto
+                        </button>
+                        <button onClick={goToEditProductPage} className="edit-product-btn">
+                            Editar Productos
+                        </button>
+                    </div>
+                )}
             </div>
         </div>
     );
