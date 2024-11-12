@@ -7,7 +7,7 @@ const AddProductForm = () => {
         nombre: '',
         precio: '',
         ingredientes: [{ nombre: '', cantidad: '' }],
-        tamaño: '', // Solo para pizzas
+        tamano: '', // Solo para pizzas
         foto: null, // Para almacenar la imagen
     });
     const [category, setCategory] = useState('hamburguesas');
@@ -24,7 +24,7 @@ const AddProductForm = () => {
             nombre: '',
             precio: '',
             ingredientes: [{ nombre: '', cantidad: '' }],
-            tamaño: '',
+            tamano: '',
             foto: null, // Resetear foto al cambiar la categoría
         });
     };
@@ -57,7 +57,11 @@ const AddProductForm = () => {
         formData.append('nombre', product.nombre);
         formData.append('precio', product.precio);
         formData.append('ingredientes', JSON.stringify(product.ingredientes));
-        formData.append('tamaño', product.tamaño);
+        // Solo agrega `tamano` si la categoría es pizzas
+    if (category === 'pizzas' && product.tamano) {
+        formData.append('tamano', product.tamano);
+    }
+
         if (product.foto) formData.append('foto', product.foto);
 
         try {
@@ -78,7 +82,7 @@ const AddProductForm = () => {
                 nombre: '',
                 precio: '',
                 ingredientes: [{ nombre: '', cantidad: '' }],
-                tamaño: '',
+                tamano: '',
                 foto: null,
             });
         } catch (error) {
@@ -123,11 +127,11 @@ const AddProductForm = () => {
 
                 {category === 'pizzas' && (
                     <label className="label">
-                        Tamaño:
+                        Tamano:
                         <input 
                             type="text" 
-                            name="tamaño" 
-                            value={product.tamaño} 
+                            name="tamano" 
+                            value={product.tamano} 
                             onChange={handleChange} 
                             required 
                             className="input"

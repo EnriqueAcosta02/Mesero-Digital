@@ -25,7 +25,7 @@ const lomitoSchema = new Schema({
 
 const pizzaSchema = new Schema({
     nombre: { type: String, required: true },
-    tamaño: { type: String, required: true },
+    tamano: { type: String, required: true },
     ingredientes: [ingredienteSchema],
     precio: { type: Number, required: true },
     imagenUrl: { type: String, required: true } // Agregado campo para imagen

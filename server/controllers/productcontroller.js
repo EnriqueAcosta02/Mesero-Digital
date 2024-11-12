@@ -71,7 +71,7 @@ export const obtenerProductos = async (req, res) => {
 // Crear un nuevo producto
 export const crearProducto = async (req, res) => {
     const categoria = req.params.categoria;
-    const { nombre, precio, ingredientes, tamaño } = req.body;
+    const { nombre, precio, ingredientes, tamano } = req.body;
 
     let imagenUrl = '';
     if (req.file) {
@@ -82,7 +82,7 @@ export const crearProducto = async (req, res) => {
         nombre,
         precio,
         ingredientes: JSON.parse(ingredientes),  // Asegúrate de que los ingredientes estén correctamente formateados
-        tamaño,
+        tamano,
         imagenUrl,  // Guarda la URL de la imagen en la base de datos
     };
 

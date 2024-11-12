@@ -11,7 +11,7 @@ const EditProductFormCard = () => {
     nombre: '',
     precio: '',
     ingredientes: [{ nombre: '', cantidad: '' }],
-    tamaño: '',
+    tamano: '',
     image: '',
   });
 
@@ -38,7 +38,7 @@ const EditProductFormCard = () => {
       nombre: '',
       precio: '',
       ingredientes: [{ nombre: '', cantidad: '' }],
-      tamaño: '',
+      tamano: '',
       image: '',
     });
   }, [category, fetchProducts]);
@@ -107,7 +107,7 @@ const EditProductFormCard = () => {
         nombre: '',
         precio: '',
         ingredientes: [{ nombre: '', cantidad: '' }],
-        tamaño: '',
+        tamano: '',
         image: '',
       });
     } catch (error) {
@@ -181,11 +181,11 @@ const EditProductFormCard = () => {
 
             {category === 'pizzas' && (
               <label className="form-label">
-                Tamaño:
+                Tamano:
                 <input
                   type="text"
-                  name="tamaño"
-                  value={productDetails.tamaño}
+                  name="tamano"
+                  value={productDetails.tamano}
                   onChange={handleChange}
                   required
                   className="form-input"

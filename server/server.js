@@ -15,7 +15,7 @@ const app = express();
 const PORT = process.env.PORT || 9999;  // Usar el puerto configurado en el .env o por defecto el 9999
 
 app.use(cors());
-app.use(express.json());  // Middleware para parsear JSON
+app.use(express.json({ limit: '10mb' }));  // Middleware para parsear JSON
 
 // Conectar a la base de datos
 conectarDB().then(() => {

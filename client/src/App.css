@@ -270,7 +270,6 @@
   align-items: center;
   height: 100vh;
   background-color: #f0f0f0;
-  font-family: 'Arial', sans-serif;
 }
 
 .login-card {
@@ -377,7 +376,7 @@
   align-items: center;
   min-height: 100vh;
   background-color: #f4f7f6;
-  font-family: 'Arial', sans-serif;
+ 
 }
 
 .catalogo-card {
@@ -618,7 +617,7 @@
   align-items: center;
   min-height: 100vh;
   background-color: #f4f7f6;
-  font-family: 'Arial', sans-serif;
+  
 }
 
 .register-card {
@@ -768,7 +767,7 @@
   flex-direction: column;
   align-items: center;
   padding: 20px;
-  font-family: 'Arial', sans-serif;
+  
 }
 
 .category-label {
