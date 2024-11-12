@@ -177,11 +177,18 @@ const Productos = () => {
                             <p className="new-modal-price">Gs {selectedProduct.precio}</p>
                             <h4 className="modaltitulo">Ingredientes:</h4>
                             <ul>
-                                {selectedProduct.ingredientes.map((ingrediente) => (
-                                    <li key={ingrediente._id}>
-                                        {ingrediente.nombre} - {ingrediente.cantidad}
-                                    </li>
-                                ))}
+                            {selectedProduct.ingredientes && (
+    <>
+        <h4 className="modaltitulo">Ingredientes:</h4>
+        <ul>
+            {selectedProduct.ingredientes.map((ingrediente) => (
+                <li key={ingrediente._id}>
+                    {ingrediente.nombre} - {ingrediente.cantidad}
+                </li>
+            ))}
+        </ul>
+    </>
+)}
                             </ul>
 
                             {/* Contador de cantidad de productos */}
