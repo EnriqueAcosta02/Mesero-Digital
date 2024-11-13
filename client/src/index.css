@@ -4,14 +4,14 @@ button {
   padding: 10px 20px;
   font-size: 16px;
   cursor: pointer;
-  background-color: #4CAF50;
+  background-color: #781f1c;
   color: white;
   border: none;
   border-radius: 5px;
 }
 
 button:hover {
-  background-color: #45a049;
+  background-color: #781f1c;
 }
 
 div {
@@ -20,7 +20,8 @@ div {
 }
 
 h1 {
-  font-size: 2.5rem;
-  color: #333;
+  font-size: 3.5rem;
+  color: #781f1c;
   margin: 5px;
+  font-family: 'Bebas Neue', sans-serif; /* Para los títulos */
 }

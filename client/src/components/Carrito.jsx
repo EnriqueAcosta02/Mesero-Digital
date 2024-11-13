@@ -5,6 +5,7 @@ const Carrito = () => {
     const [cart, setCart] = useState(() => JSON.parse(localStorage.getItem('cart')) || []);
     const [pedidoExitoso, setPedidoExitoso] = useState(false); // Estado para el mensaje de éxito
     const navigate = useNavigate();
+    
 
     const removeFromCart = (index) => {
         const updatedCart = cart.filter((_, i) => i !== index);
@@ -70,12 +71,14 @@ const Carrito = () => {
                 <h3 style={styles.totalPrice}>Total: Gs{totalPrecio}</h3>
             </div>
             <div>
+                
                 {pedidoExitoso ? (
                     <p style={styles.successMessage}>¡Pedido realizado con éxito!</p>
                 ) : (
                     <button onClick={handleOrder} style={styles.orderButton}>
                         Hacer Pedido
                     </button>
+                    
                 )}
             </div>
             <button onClick={goToProductos} style={styles.backButton}>Volver a Productos</button>

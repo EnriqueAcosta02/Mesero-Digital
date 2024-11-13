@@ -1,6 +1,8 @@
 import React, { useState } from 'react';
 import { useNavigate } from 'react-router-dom';
 import '../App.css';
+import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
+import { faHamburger, faPizzaSlice,faDrumstickBite, faMartiniGlass, faUser, faCartShopping, faBars} from '@fortawesome/free-solid-svg-icons';
 
 const Header = ({ user, toggleMenu, menuVisible, handleLogout, cart, goToCart, toggleProfileModal, toggleNosotrosModal, toggleHorarioModal, toggleUbicacionModal }) => {
     const [isMenuOpen, setIsMenuOpen] = useState(false);
@@ -24,7 +26,7 @@ const Header = ({ user, toggleMenu, menuVisible, handleLogout, cart, goToCart, t
                     </div>
                     <div className="menu">
                         <button onClick={toggleDropdown} className="menu-btn">
-                            ☰
+                            <FontAwesomeIcon icon={faBars} style={{fontSize:"30px"}} />
                         </button>
                         {isMenuOpen && (
                             <div className="dropdown-menuheader">
@@ -42,7 +44,7 @@ const Header = ({ user, toggleMenu, menuVisible, handleLogout, cart, goToCart, t
                     {user ? (
                         <div className="user-info">
                             <button onClick={toggleProfileModal} className="profile-btn">
-                                👤 {user.username}
+                                <FontAwesomeIcon icon={faUser} style={{fontSize:"24px"}} />{user.username}
                             </button>
                             {menuVisible && (
                                 <div className="user-menu">
@@ -58,7 +60,7 @@ const Header = ({ user, toggleMenu, menuVisible, handleLogout, cart, goToCart, t
                     )}
                     <div className="cart-info">
                         <button onClick={goToCart} className="cart-btn">
-                            🛒
+                            <FontAwesomeIcon icon={faCartShopping} style={{fontSize:"24px"}} />
                             {cart.length > 0 && <span className="cart-count">{cart.length}</span>}
                         </button>
                     </div>
@@ -68,15 +70,19 @@ const Header = ({ user, toggleMenu, menuVisible, handleLogout, cart, goToCart, t
             {/* Secciones de categorías debajo del contenedor principal */}
             <div className="category-sections">
                 <div className="category-section category-hamburgers" onClick={() => goToCategory('hamburguesas')}>
+                <FontAwesomeIcon icon={faHamburger} style={{fontSize: '24px' }} />
                     Hamburguesas
                 </div>
                 <div className="category-section category-pizzas" onClick={() => goToCategory('pizzas')}>
+                <FontAwesomeIcon icon={faPizzaSlice} style={{fontSize:'24px'}} />
                     Pizzas
                 </div>
                 <div className="category-section category-lomitos" onClick={() => goToCategory('lomitos')}>
+                    <FontAwesomeIcon icon={faDrumstickBite} style={{fontSize:'24px'}} />
                     Lomitos
                 </div>
                 <div className="category-section category-bebidas" onClick={() => goToCategory('bebidas')}>
+                    <FontAwesomeIcon icon={faMartiniGlass} style={{fontSize:'24px'}} />
                     Bebidas
                 </div>
             </div>
