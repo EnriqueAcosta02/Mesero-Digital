@@ -79,11 +79,17 @@ const EditProductFormCard = () => {
     if (file) {
       const reader = new FileReader();
       reader.onloadend = () => {
-        setProductDetails({ ...productDetails, image: reader.result });
+        // Sobrescribe la imagen en `productDetails` con la nueva imagen cargada
+        setProductDetails((prevDetails) => ({
+          ...prevDetails,
+          image: reader.result,
+        }));
+        
       };
       reader.readAsDataURL(file);
     }
   };
+  
 
   const submitProduct = async () => {
     try {
@@ -95,7 +101,7 @@ const EditProductFormCard = () => {
         },
         body: JSON.stringify(productDetails),
       });
-
+      
       if (!response.ok) {
         throw new Error('Error al actualizar el producto');
       }

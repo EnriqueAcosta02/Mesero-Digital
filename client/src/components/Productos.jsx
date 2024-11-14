@@ -175,7 +175,7 @@ const Productos = () => {
                             />
                             <h3 className="modaltitulo">{selectedProduct.nombre}</h3>
                             <p className="new-modal-price">Gs {selectedProduct.precio}</p>
-                            <h4 className="modaltitulo">Ingredientes:</h4>
+                            
                             <ul>
                             {selectedProduct.ingredientes && (
     <>
